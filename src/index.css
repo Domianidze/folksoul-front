@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    @font-face {
+        font-family: 'bgp-arial';
+        src: url('./assets/fonts/bpg-arial.ttf');
+    }
+
+    @font-face {
+        font-family: 'bpg-nino-mtavruli';
+        src: url('./assets/fonts/bpg-nino-mtavruli.ttf');
+    }
+}
