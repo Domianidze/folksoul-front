@@ -1,7 +1,9 @@
-const App = () => {
+import { Landing } from 'pages';
+
+const App: React.FC = () => {
   return (
     <div className='App'>
-      <h1>Hello World!</h1>
+      <Landing />
     </div>
   );
 };
