@@ -51,7 +51,7 @@ const Artist: React.FC<{
         initial='initialStatic'
         whileHover='hover'
         href='*'
-        className='absolute top-1/2 -right-6 w-16 h-16 rounded-full flex justify-center items-center border-4 border-primary-gold shadow-primary pointer-events-auto z-50'
+        className='absolute top-1/2 -right-6 w-16 h-16 rounded-full flex justify-center items-center border-4 border-primary-gold shadow-primary pointer-events-auto z-10'
         style={{
           backgroundColor: props.artist.color,
         }}

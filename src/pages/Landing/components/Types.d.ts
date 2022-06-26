@@ -4,3 +4,9 @@ export type ArtistType = {
   color: string;
   distance: number;
 };
+
+export type SocialMediaType = {
+  name: string;
+  img: string;
+  href: string;
+};
