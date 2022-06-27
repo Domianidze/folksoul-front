@@ -1,38 +1,54 @@
-import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { motion, useAnimation } from 'framer-motion';
 
 import { SunoteImg } from 'assets';
 import { Artist } from './';
-import { ArtistType } from './Types';
+import { ArtistType } from '../Types';
 
 const SunoteSystem: React.FC<{
-  items: ArtistType[];
+  artists: ArtistType[];
+  activeArtist: ArtistType | undefined;
+  stopAnimating: boolean;
 }> = (props) => {
-  const sunoteVariants = {
-    pulsating: {
-      opacity: [1, 0.75, 1],
+  const animatePulsating = useAnimation();
+
+  useEffect(() => {
+    animatePulsating.start({
+      opacity: [1, 0.6, 1],
       transition: {
-        duration: 2.5,
+        duration: 2.6,
         repeat: Infinity,
       },
-    },
-    hover: {
-      opacity: 1,
-    },
-  };
+    });
+
+    if (props.stopAnimating) {
+      animatePulsating.stop();
+    }
+  }, [animatePulsating, props.stopAnimating]);
 
   return (
     <div className='relative flex justify-center items-center'>
-      {props.items.map((item, index) => {
-        return <Artist artist={item} index={index} key={index} />;
-      })}
-      <motion.div
-        variants={sunoteVariants}
-        animate='pulsating'
-        whileHover='hover'
-        className='rounded-full cursor-pointer'
-      >
-        <img src={SunoteImg} alt='sunote' />
-      </motion.div>
+      {props.artists.length > 0 &&
+        props.artists.map((item, index) => {
+          return (
+            <Artist
+              artist={item}
+              activeArtist={props.activeArtist}
+              stopAnimating={props.stopAnimating}
+              index={index}
+              key={index}
+            />
+          );
+        })}
+      <Link to='/'>
+        <motion.div
+          animate={animatePulsating}
+          className='rounded-full duration-1000 hover:!opacity-100'
+        >
+          <img src={SunoteImg} alt='sunote' />
+        </motion.div>
+      </Link>
     </div>
   );
 };

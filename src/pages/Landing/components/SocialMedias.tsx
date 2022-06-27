@@ -1,18 +1,40 @@
-import { SocialMediaType } from './Types';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-const SocialMedias: React.FC<{
-  items: SocialMediaType[];
-}> = (props) => {
+import { SocialMediaType } from '../Types';
+
+const SocialMedias: React.FC = (props) => {
+  const [socialMedias, setSocialMedias] = useState<SocialMediaType[]>([]);
+
+  useEffect(() => {
+    const getSocialMedias = async () => {
+      try {
+        const response = await axios.get(
+          'http://localhost:8080/get-social-medias'
+        );
+        const data: SocialMediaType[] = response.data;
+
+        setSocialMedias(data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    getSocialMedias();
+  });
+
   return (
     <div className='py-5 w-full flex justify-center items-center'>
-      {props.items.map((item, index) => {
+      {socialMedias.map((item, index) => {
         return (
           <a
-            href={item.href}
+            href={item.link}
             className='px-5 duration-500 hover:opacity-80'
+            target='_blank'
+            rel='noreferrer'
             key={index}
           >
-            <img src={item.img} alt={item.name}></img>
+            <img src={item.iconUrl} alt={item.name} className='w-10'></img>
           </a>
         );
       })}
