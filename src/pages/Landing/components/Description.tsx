@@ -5,6 +5,8 @@ import axios from 'axios';
 import { Bullets } from './';
 import { ArtistType, BandType } from '../Types';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const DescriptionCard: React.FC<{
   activeArtist: ArtistType | undefined;
 }> = (props) => {
@@ -17,7 +19,7 @@ const DescriptionCard: React.FC<{
 
   useEffect(() => {
     const getBandData = async () => {
-      const response = await axios.get('http://localhost:8080/get-band-data');
+      const response = await axios.get(`${API_URL}/get-band-data`);
       const data: BandType = response.data;
 
       setBandData(data);

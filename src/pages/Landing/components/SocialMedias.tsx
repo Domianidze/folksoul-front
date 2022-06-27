@@ -3,15 +3,15 @@ import axios from 'axios';
 
 import { SocialMediaType } from '../Types';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const SocialMedias: React.FC = (props) => {
   const [socialMedias, setSocialMedias] = useState<SocialMediaType[]>([]);
 
   useEffect(() => {
     const getSocialMedias = async () => {
       try {
-        const response = await axios.get(
-          'http://localhost:8080/get-social-medias'
-        );
+        const response = await axios.get(`${API_URL}/get-social-medias`);
         const data: SocialMediaType[] = response.data;
 
         setSocialMedias(data);

@@ -5,6 +5,8 @@ import axios from 'axios';
 import { Header, SunoteSystem, Description, SocialMedias } from './components';
 import { ArtistType } from './Types';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const Landing: React.FC = () => {
   const params = useParams();
 
@@ -15,7 +17,7 @@ const Landing: React.FC = () => {
   useEffect(() => {
     const getArtists = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/get-members');
+        const response = await axios.get(`${API_URL}/get-members`);
         const data: ArtistType[] = response.data;
 
         const active: ArtistType | undefined = data.find(
