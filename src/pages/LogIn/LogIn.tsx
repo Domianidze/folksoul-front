@@ -1,11 +1,17 @@
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
 import { Input } from './components';
+import { AuthContext } from 'state';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
 const Login: React.FC = () => {
+  const navigate = useNavigate();
+  const authCtx = useContext(AuthContext);
+
   const {
     register,
     handleSubmit,
@@ -18,8 +24,10 @@ const Login: React.FC = () => {
   const loginHandler = handleSubmit(async (data) => {
     try {
       const response = await axios.post(`${API_URL}/login`, data);
+      const token = response.data.token;
 
-      console.log(response);
+      authCtx.onLogIn(token);
+      navigate('/dashboard');
     } catch (err: any) {
       const error = err?.response?.data?.message;
 
