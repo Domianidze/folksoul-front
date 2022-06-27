@@ -9,7 +9,12 @@
     }
 
     @font-face {
-        font-family: 'bpg-nino-mtavruli';
-        src: url('./assets/font/bpg-nino-mtavruli.ttf');
+        font-family: 'nino-mtavruli';
+        src: url('./assets/font/nino-mtavruli.ttf');
+    }
+
+    @font-face {
+        font-family: 'nino-mtavruli-bold';
+        src: url('./assets/font/nino-mtavruli-bold.ttf');
     }
 }

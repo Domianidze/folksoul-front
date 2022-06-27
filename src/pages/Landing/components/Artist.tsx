@@ -98,7 +98,7 @@ const Artist: React.FC<{
               borderColor: props.artist.color,
             }}
           >
-            <p className='pt-1 font-bpg-nino-mtavruli text-base text-primary-dark-blue'>
+            <p className='pt-1 font-nino-mtavruli text-base text-primary-dark-blue'>
               {props.artist.name}
             </p>
           </div>
