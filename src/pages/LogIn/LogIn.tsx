@@ -1,18 +1,46 @@
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
 
 import { Input } from './components';
+
+const API_URL = process.env.REACT_APP_API_URL;
 
 const Login: React.FC = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm({
     mode: 'onTouched',
   });
 
-  const loginHandler = handleSubmit((data) => {
-    console.log(data);
+  const loginHandler = handleSubmit(async (data) => {
+    try {
+      const response = await axios.post(`${API_URL}/login`, data);
+
+      console.log(response);
+    } catch (err: any) {
+      const error = err?.response?.data?.message;
+
+      if (!error) {
+        return;
+      }
+
+      if (error.includes('username')) {
+        setError('username', {
+          type: 'custom',
+          message: 'მომხმარებელი ამ მეტსახელით ვერ მოიძებნა',
+        });
+      }
+
+      if (error.includes('password')) {
+        setError('password', {
+          type: 'custom',
+          message: 'პაროლი არასწორია',
+        });
+      }
+    }
   });
 
   return (
