@@ -1,11 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
 
-import { Landing, Login } from 'pages';
+import { Landing, LogIn } from 'pages';
 
 const App: React.FC = () => {
   return (
     <Routes>
-      <Route path='/login' element={<Login />} />
+      <Route path='/login' element={<LogIn />} />
       <Route path='/:memberId' element={<Landing />} />
       <Route index element={<Landing />} />
     </Routes>
