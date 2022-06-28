@@ -17,4 +17,10 @@
         font-family: 'nino-mtavruli-bold';
         src: url('./assets/font/nino-mtavruli-bold.ttf');
     }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    } 
 }

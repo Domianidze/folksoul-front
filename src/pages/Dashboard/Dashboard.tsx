@@ -13,7 +13,7 @@ const Dashboard: React.FC = () => {
   return (
     <div className='w-100 h-screen max-h-screen flex justify-center items-center bg-primary overflow-hidden'>
       <ul className='absolute -left-5 top-1/2 -translate-y-1/2 w-80 h-112 flex justify-center items-center flex-col font-nino-mtavruli bg-custom-black border border-custom-gray rounded-3xl'>
-        <ListItem to='' img={MainIcon} text='მთავარი' />
+        <ListItem end to='' img={MainIcon} text='მთავარი' />
         <ListItem to='members' img={MembersIcon} text='ჯგუფის წევრები' />
         <ListItem
           to='social-medias'

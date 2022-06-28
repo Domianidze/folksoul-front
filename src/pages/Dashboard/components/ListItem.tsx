@@ -5,13 +5,14 @@ const ListItem: React.FC<{
   to: string;
   img: string;
   text: string;
+  end?: boolean;
 }> = (props) => {
   const [active, setActive] = useState<boolean>(false);
 
   return (
     <li className={`my-4 w-full h-12 ${active ? 'bg-content-white' : ''}`}>
       <NavLink
-        end
+        end={props.end}
         to={props.to}
         className={({ isActive }) => {
           setActive(isActive ? true : false);

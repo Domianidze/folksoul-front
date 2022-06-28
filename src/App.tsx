@@ -6,6 +6,7 @@ import {
   Dashboard,
   Main,
   Members,
+  UpsertMember,
   SocialMedias,
   About,
 } from 'pages';
@@ -18,7 +19,10 @@ const App: React.FC = () => {
       <Route path='/:memberId' element={<Landing />} />
       <Route path='/dashboard' element={<Dashboard />}>
         <Route index element={<Main />} />
-        <Route path='members' element={<Members />} />
+        <Route path='members' element={<Members />}>
+          <Route path='add' element={<UpsertMember />} />
+          <Route path='edit/:memberId' element={<UpsertMember />} />
+        </Route>
         <Route path='social-medias' element={<SocialMedias />} />
         <Route path='about' element={<About />} />
       </Route>

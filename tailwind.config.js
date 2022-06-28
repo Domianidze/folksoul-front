@@ -24,8 +24,10 @@ module.exports = {
         'primary-green': '#53C02C',
         'custom-black': '#333333',
         'custom-gray': '#898989',
+        'dark-gray': '#444444',
         'custom-beige': '#C3B6B2',
         'light-red': '#EB5757',
+        'light-blue': '#3A7DA3',
         'navy-green': '#345161',
       },
       backgroundImage: {
