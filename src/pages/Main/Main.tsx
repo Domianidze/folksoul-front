@@ -1,5 +1,13 @@
+import { getWelcomeText } from './util';
+import { TvImg } from 'assets';
+
 const Main: React.FC = () => {
-  return <h1>Main</h1>;
+  return (
+    <div className='w-full h-full flex flex-col justify-evenly items-center'>
+      <p className='font-nino-mtavruli text-5xl'>{getWelcomeText()}</p>
+      <img src={TvImg} alt='tv' className='w-112' />
+    </div>
+  );
 };
 
 export default Main;
