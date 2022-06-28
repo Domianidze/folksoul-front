@@ -6,8 +6,10 @@ module.exports = {
       spacing: {
         112: '30rem',
         150: '37.5rem',
-        168: '42rem',
+        168: '42.5rem',
         190: '47.5rem',
+        200: '47.5rem',
+        300: '77.5rem',
       },
       fontFamily: {
         'bpg-arial': ['bpg-arial', 'arial'],
@@ -21,6 +23,7 @@ module.exports = {
         'primary-dark-blue': '#143B52',
         'primary-green': '#53C02C',
         'custom-black': '#333333',
+        'custom-gray': '#898989',
         'custom-beige': '#C3B6B2',
         'light-red': '#EB5757',
         'navy-green': '#345161',
@@ -33,6 +36,7 @@ module.exports = {
       },
       boxShadow: {
         primary: '2px 4px 14px 0 #000000',
+        'primary-inner': 'inset 2px 4px 14px 0 #000000',
       },
       skew: {
         32: '32deg',
