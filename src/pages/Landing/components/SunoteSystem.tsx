@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import { motion, useAnimation } from 'framer-motion';
 
 import { SunoteImg } from 'assets';
-import { Artist } from './';
-import { ArtistType } from '../Types';
+import { Member } from './';
+import { MemberType } from 'Types';
 
 const SunoteSystem: React.FC<{
-  artists: ArtistType[];
-  activeArtist: ArtistType | undefined;
+  members: MemberType[];
+  activeMember: MemberType | undefined;
   stopAnimating: boolean;
 }> = (props) => {
   const animatePulsating = useAnimation();
@@ -29,12 +29,12 @@ const SunoteSystem: React.FC<{
 
   return (
     <div className='relative flex justify-center items-center'>
-      {props.artists.length > 0 &&
-        props.artists.map((item, index) => {
+      {props.members.length > 0 &&
+        props.members.map((item, index) => {
           return (
-            <Artist
-              artist={item}
-              activeArtist={props.activeArtist}
+            <Member
+              member={item}
+              activeMember={props.activeMember}
               stopAnimating={props.stopAnimating}
               index={index}
               key={index}

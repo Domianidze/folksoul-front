@@ -1,8 +1,9 @@
-export type ArtistType = {
+export type MemberType = {
   _id: string;
   name: string;
   avatarUrl: string;
   color: string;
+  instrument: string;
   orbitWidth: number;
   biography: string;
 };

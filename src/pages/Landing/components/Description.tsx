@@ -3,14 +3,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
 
 import { Bullets } from './';
-import { ArtistType, BandType } from '../Types';
+import { MemberType, BandType } from 'Types';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
 const DescriptionCard: React.FC<{
-  activeArtist: ArtistType | undefined;
+  activeMember: MemberType | undefined;
 }> = (props) => {
-  const artist = props.activeArtist;
+  const member = props.activeMember;
 
   const [bandData, setBandData] = useState<BandType>({
     logoUrl: '',
@@ -56,8 +56,8 @@ const DescriptionCard: React.FC<{
             initial='initial'
             animate='animate'
             exit='exit'
-            key={props.activeArtist?._id}
-            src={artist ? artist.avatarUrl : bandData.logoUrl}
+            key={props.activeMember?._id}
+            src={member ? member.avatarUrl : bandData.logoUrl}
             alt='logo'
             className='h-42'
           ></motion.img>
@@ -70,10 +70,10 @@ const DescriptionCard: React.FC<{
             initial='initial'
             animate='animate'
             exit='exit'
-            key={props.activeArtist?._id}
+            key={props.activeMember?._id}
             className='w-full h-full pr-8 font-bpg-arial text-lg text-custom-black text-justify overflow-y-auto'
           >
-            <p>{artist ? artist.biography : bandData.information}</p>
+            <p>{member ? member.biography : bandData.information}</p>
           </motion.div>
         </AnimatePresence>
       </div>

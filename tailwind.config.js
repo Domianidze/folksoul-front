@@ -6,6 +6,7 @@ module.exports = {
       spacing: {
         112: '30rem',
         150: '37.5rem',
+        160: '40rem',
         168: '42.5rem',
         190: '47.5rem',
         200: '47.5rem',
@@ -24,10 +25,11 @@ module.exports = {
         'primary-green': '#53C02C',
         'custom-black': '#333333',
         'custom-gray': '#898989',
-        'dark-gray': '#444444',
         'custom-beige': '#C3B6B2',
         'light-red': '#EB5757',
         'light-blue': '#3A7DA3',
+        'dark-gray': '#444444',
+        'dark-blue': '#042639',
         'navy-green': '#345161',
       },
       backgroundImage: {

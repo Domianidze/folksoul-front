@@ -3,25 +3,25 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 import { Header, SunoteSystem, Description, SocialMedias } from './components';
-import { ArtistType } from './Types';
+import { MemberType } from 'Types';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
 const Landing: React.FC = () => {
   const params = useParams();
 
-  const [artists, setArtists] = useState<ArtistType[]>([]);
-  const [activeArtist, setActiveArtist] = useState<ArtistType | undefined>();
+  const [members, setMembers] = useState<MemberType[]>([]);
+  const [activeMember, setActiveMember] = useState<MemberType | undefined>();
   const [stopAnimating, setStopAnimating] = useState<boolean>(false);
 
   useEffect(() => {
-    const getArtists = async () => {
+    const getMembers = async () => {
       try {
         const response = await axios.get(`${API_URL}/get-members`);
-        const data: ArtistType[] = response.data;
+        const data: MemberType[] = response.data;
 
-        const active: ArtistType | undefined = data.find(
-          (artist) => artist._id === params.memberId
+        const active: MemberType | undefined = data.find(
+          (member) => member._id === params.memberId
         );
 
         if (active) {
@@ -30,14 +30,14 @@ const Landing: React.FC = () => {
           setStopAnimating(false);
         }
 
-        setArtists(data);
-        setActiveArtist(active);
+        setMembers(data);
+        setActiveMember(active);
       } catch (err) {
         console.error(err);
       }
     };
 
-    getArtists();
+    getMembers();
   }, [params]);
 
   return (
@@ -46,13 +46,13 @@ const Landing: React.FC = () => {
       <div className='pt-20 w-full h-full flex'>
         <div className='h-full w-1/2 flex justify-center items-center'>
           <SunoteSystem
-            artists={artists}
-            activeArtist={activeArtist}
+            members={members}
+            activeMember={activeMember}
             stopAnimating={stopAnimating}
           />
         </div>
         <div className='pt-20 h-full w-1/2 flex flex-col justify-center items-center'>
-          <Description activeArtist={activeArtist} />
+          <Description activeMember={activeMember} />
           <SocialMedias />
         </div>
       </div>

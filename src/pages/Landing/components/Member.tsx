@@ -2,27 +2,27 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useAnimation, useMotionValue, useSpring } from 'framer-motion';
 
-import { ArtistType } from '../Types';
+import { MemberType } from 'Types';
 
-const Artist: React.FC<{
-  artist: ArtistType;
-  activeArtist: ArtistType | undefined;
+const Member: React.FC<{
+  member: MemberType;
+  activeMember: MemberType | undefined;
   stopAnimating: boolean;
   index: number;
 }> = (props) => {
-  const active = props.artist._id === props.activeArtist?._id;
+  const active = props.member._id === props.activeMember?._id;
   const rotate = useMotionValue(0);
   const scale = useSpring(1, { stiffness: 100 });
 
-  const [artistRotate] = useState(Math.floor(Math.random() * 360));
-  const [artistMaxRotate, setArtistMaxRotate] = useState(artistRotate + 360);
+  const [memberRotate] = useState(Math.floor(Math.random() * 360));
+  const [memberMaxRotate, setMemberMaxRotate] = useState(memberRotate + 360);
 
   const initialRotate = {
-    rotate: artistRotate,
+    rotate: memberRotate,
   };
 
   const initialStatic = {
-    rotate: -artistRotate,
+    rotate: -memberRotate,
   };
 
   const animateRotate = useAnimation();
@@ -30,22 +30,22 @@ const Artist: React.FC<{
 
   useEffect(() => {
     // @ts-ignore
-    setArtistMaxRotate(rotate.current + 360);
+    setMemberMaxRotate(rotate.current + 360);
 
-    const artistTransition = {
+    const memberTransition = {
       ease: 'linear',
       duration: 30 - props.index * 2,
       repeat: Infinity,
     };
 
     animateRotate.start({
-      rotate: artistMaxRotate,
-      transition: artistTransition,
+      rotate: memberMaxRotate,
+      transition: memberTransition,
     });
 
     animateStatic.start({
-      rotate: -artistMaxRotate,
-      transition: artistTransition,
+      rotate: -memberMaxRotate,
+      transition: memberTransition,
     });
 
     if (props.stopAnimating) {
@@ -64,8 +64,8 @@ const Artist: React.FC<{
     scale,
     animateRotate,
     animateStatic,
-    artistRotate,
-    artistMaxRotate,
+    memberRotate,
+    memberMaxRotate,
     props.stopAnimating,
     props.index,
   ]);
@@ -77,29 +77,29 @@ const Artist: React.FC<{
       className='absolute pointer-events-none'
       style={{ rotate }}
     >
-      <Link to={`/${props.artist._id}`}>
+      <Link to={`/${props.member._id}`}>
         <motion.div
           animate={animateStatic}
           initial={initialStatic}
           className='absolute top-1/2 -right-6 w-16 h-16 rounded-full flex justify-center items-center border-4 border-primary-gold shadow-primary pointer-events-auto z-10'
           style={{
-            backgroundColor: props.artist.color,
+            backgroundColor: props.member.color,
             scale,
           }}
         >
           <img
-            src={props.artist.avatarUrl}
-            alt={props.artist.name}
+            src={props.member.avatarUrl}
+            alt={props.member.name}
             className='pt-1 h-14'
           ></img>
           <div
             className='absolute bottom-0 translate-y-1/2 w-20 h-7 flex justify-center items-center bg-primary-gold border-4 rounded-2xl shadow-primary'
             style={{
-              borderColor: props.artist.color,
+              borderColor: props.member.color,
             }}
           >
             <p className='pt-1 font-nino-mtavruli text-base text-primary-dark-blue'>
-              {props.artist.name}
+              {props.member.name}
             </p>
           </div>
         </motion.div>
@@ -108,10 +108,10 @@ const Artist: React.FC<{
         animate={animateStatic}
         initial={initialStatic}
         className='border-2 border-dashed border-primary-gold rounded-full'
-        style={{ padding: `${props.artist.orbitWidth + 100}px` }}
+        style={{ padding: `${props.member.orbitWidth + 100}px` }}
       ></motion.div>
     </motion.div>
   );
 };
 
-export default Artist;
+export default Member;
