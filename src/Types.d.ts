@@ -9,6 +9,7 @@ export type MemberType = {
 };
 
 export type SocialMediaType = {
+  _id: string;
   name: string;
   iconUrl: string;
   link: string;

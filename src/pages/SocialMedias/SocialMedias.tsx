@@ -1,18 +1,30 @@
+import { useState, useEffect } from 'react';
 import { Link, useOutlet } from 'react-router-dom';
+import axios from 'axios';
 
 import { DashboardTitle } from 'components';
 import { SocialMedia } from './components';
-import { SocialMediasIcon } from 'assets';
 import { SocialMediaType } from 'Types';
 
-const DUMMY_SOCIAL_MEDIA: SocialMediaType = {
-  iconUrl: SocialMediasIcon,
-  name: 'YouTube',
-  link: 'https://www.youtube.com/',
-};
+const API_URL = process.env.REACT_APP_API_URL;
 
 const SocialMedias: React.FC = () => {
-  const outlet = useOutlet();
+  const [socialMedias, setSocialMedias] = useState<SocialMediaType[]>([]);
+
+  const updateSocialMedias = async () => {
+    try {
+      const response = await axios.get(`${API_URL}/get-social-medias`);
+      const data: SocialMediaType[] = response.data;
+
+      setSocialMedias(data);
+    } catch (err) {}
+  };
+
+  useEffect(() => {
+    updateSocialMedias();
+  }, []);
+
+  const outlet = useOutlet({ updateSocialMedias });
   if (outlet) {
     return outlet;
   }
@@ -21,7 +33,13 @@ const SocialMedias: React.FC = () => {
     <div className='pb-20 relative w-full h-full flex items-center flex-col'>
       <DashboardTitle title='სოციალური ბმულები' />
       <div className='my-5 px-5 overflow-y-auto'>
-        <SocialMedia socialMedia={DUMMY_SOCIAL_MEDIA} />
+        {socialMedias.map((socialMedia) => (
+          <SocialMedia
+            socialMedia={socialMedia}
+            updateSocialMedias={updateSocialMedias}
+            key={socialMedia._id}
+          />
+        ))}
       </div>
       <Link
         to='add'

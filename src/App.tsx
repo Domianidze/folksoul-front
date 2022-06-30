@@ -26,7 +26,7 @@ const App: React.FC = () => {
         </Route>
         <Route path='social-medias' element={<SocialMedias />}>
           <Route path='add' element={<UpsertSocialMedia />} />
-          <Route path='edit/:memberId' element={<UpsertSocialMedia />} />
+          <Route path='edit/:socialMediaId' element={<UpsertSocialMedia />} />
         </Route>
         <Route path='about' element={<About />} />
       </Route>

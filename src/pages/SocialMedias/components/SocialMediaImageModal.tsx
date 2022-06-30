@@ -6,12 +6,11 @@ import { UseBearerToken } from 'hooks';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-const MemberImageModal: React.FC<{
-  memberId: string;
+const SocialMediaImageModal: React.FC<{
+  socialMediaId: string;
   defaultImage: string;
-  bgColor: string;
   onClose: () => void;
-  updateMembers: () => void;
+  updateSocialMedias: () => void;
 }> = (props) => {
   const bearerToken = UseBearerToken();
 
@@ -24,29 +23,28 @@ const MemberImageModal: React.FC<{
       if (!image) return;
 
       const body = new FormData();
-      body.append('memberId', props.memberId);
+      body.append('socialMediaId', props.socialMediaId);
       body.append('image', image);
 
-      await axios.put(`${API_URL}/change-member-avatar`, body, {
+      await axios.put(`${API_URL}/change-social-media-icon`, body, {
         headers: {
           Authorization: bearerToken,
         },
       });
 
-      props.updateMembers();
+      props.updateSocialMedias();
       props.onClose();
     } catch (err) {}
   };
 
   return (
     <Modal onClose={props.onClose}>
-      <ModalTitle title='შეცვალე ჯგუფის წევრის ავატარი' />
-      <div
-        className='my-16 relative w-56 h-56 flex justify-center items-center border border-white rounded-full shadow-primary'
-        style={{ backgroundColor: props.bgColor }}
-      >
-        <img src={preview ? preview : props.defaultImage} alt='avatar' />
-      </div>
+      <ModalTitle title='შეცვალე სოციალური ბმულის აიკონი' />
+      <img
+        src={preview ? preview : props.defaultImage}
+        alt='icon'
+        className='my-16 w-56 border'
+      />
       <form onSubmit={submitHandler}>
         <ModalButton
           type={preview ? 'save' : 'upload'}
@@ -64,4 +62,4 @@ const MemberImageModal: React.FC<{
   );
 };
 
-export default MemberImageModal;
+export default SocialMediaImageModal;
