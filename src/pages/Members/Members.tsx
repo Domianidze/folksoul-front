@@ -46,7 +46,7 @@ const Members: React.FC = () => {
   const lastIndex = firstIndex + 3;
 
   return (
-    <div className='w-full h-full flex items-center flex-col'>
+    <div className='pb-20 relative w-full h-full flex items-center flex-col'>
       <DashboardTitle title='ჯგუფების წევრები' />
       <div className='px-28 w-full flex'>
         {members.slice(firstIndex, lastIndex).map((member) => {
@@ -73,7 +73,7 @@ const Members: React.FC = () => {
       </div>
       <Link
         to='add'
-        className='font-nino-mtavruli-bold text-lg text-light-blue underline'
+        className='absolute bottom-10 font-nino-mtavruli-bold text-lg text-light-blue underline'
       >
         ახალი წევრი გვყავს?
       </Link>

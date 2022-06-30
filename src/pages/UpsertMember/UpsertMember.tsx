@@ -9,8 +9,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
 import { UseBearerToken } from 'hooks';
-import { DashboardTitle } from 'components';
-import { Input } from './components';
+import { DashboardTitle, DashboardInput } from 'components';
 import { MemberType } from 'Types';
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -98,7 +97,7 @@ const UpsertMember = () => {
         onSubmit={submitHandler}
         className='w-150 flex items-center flex-col'
       >
-        <Input
+        <DashboardInput
           type='text'
           placeholder='სახელი'
           register={{
@@ -118,7 +117,7 @@ const UpsertMember = () => {
           defaultValue={member?.name}
         />
         <div className='py-16 w-full flex justify-between'>
-          <Input
+          <DashboardInput
             type='text'
             placeholder='ინსტრუმენტი'
             register={{
@@ -138,7 +137,7 @@ const UpsertMember = () => {
             error={errors?.instrument?.message}
             defaultValue={member?.instrument}
           />
-          <Input
+          <DashboardInput
             type='number'
             placeholder='ორბიტის სიგრძე'
             register={{
@@ -149,7 +148,7 @@ const UpsertMember = () => {
             error={errors?.orbitWidth?.message}
             defaultValue={member?.orbitWidth}
           />
-          <Input
+          <DashboardInput
             type='text'
             placeholder='ფერი'
             register={{

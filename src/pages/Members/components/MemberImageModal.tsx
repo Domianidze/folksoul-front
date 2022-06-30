@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { UseFileUpload } from 'hooks';
-import { Modal, ModalTitle, ModalButton } from '.';
+import { Modal, ModalTitle, ModalButton } from '../../../components';
 import { UseBearerToken } from 'hooks';
 
 const API_URL = process.env.REACT_APP_API_URL;

@@ -1,4 +1,4 @@
-import { Modal, ModalTitle } from '.';
+import { Modal, ModalTitle } from 'components';
 import { MemberType } from 'Types';
 
 const MemberImageModal: React.FC<{

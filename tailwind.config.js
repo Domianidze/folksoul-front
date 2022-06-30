@@ -9,7 +9,7 @@ module.exports = {
         160: '40rem',
         168: '42.5rem',
         190: '47.5rem',
-        200: '47.5rem',
+        200: '50rem',
         300: '77.5rem',
       },
       fontFamily: {
@@ -28,6 +28,7 @@ module.exports = {
         'custom-beige': '#C3B6B2',
         'light-red': '#EB5757',
         'light-blue': '#3A7DA3',
+        'lighter-blue': '#2F80ED',
         'dark-gray': '#444444',
         'dark-blue': '#042639',
         'navy-green': '#345161',

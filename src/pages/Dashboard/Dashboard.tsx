@@ -31,7 +31,7 @@ const Dashboard: React.FC = () => {
           </button>
         </li>
       </ul>
-      <div className='ml-72 w-300 h-200 bg-white rounded-xl shadow-primary-inner'>
+      <div className='ml-72 w-300 h-190 bg-white rounded-xl shadow-primary-inner'>
         <Outlet />
       </div>
     </div>

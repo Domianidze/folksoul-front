@@ -8,6 +8,7 @@ import {
   Members,
   UpsertMember,
   SocialMedias,
+  UpsertSocialMedia,
   About,
 } from 'pages';
 
@@ -23,7 +24,10 @@ const App: React.FC = () => {
           <Route path='add' element={<UpsertMember />} />
           <Route path='edit/:memberId' element={<UpsertMember />} />
         </Route>
-        <Route path='social-medias' element={<SocialMedias />} />
+        <Route path='social-medias' element={<SocialMedias />}>
+          <Route path='add' element={<UpsertSocialMedia />} />
+          <Route path='edit/:memberId' element={<UpsertSocialMedia />} />
+        </Route>
         <Route path='about' element={<About />} />
       </Route>
     </Routes>

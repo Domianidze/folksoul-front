@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import { UseBearerToken } from 'hooks';
-import { MemberDetailsModal, MemberImageModal } from 'components';
-import { MemberButton } from './';
-import { EditPhotoImg } from 'assets';
+import { MemberDetailsModal, MemberImageModal } from './';
+import { DashboardButton } from 'components';
+import { EditPhotoIcon } from 'assets';
 import { MemberType } from 'Types';
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -105,7 +105,7 @@ const Member: React.FC<{
           <img src={member.avatarUrl} alt={`${member.name} avatar`} />
           <button type='button' onClick={openImageModalHandler}>
             <img
-              src={EditPhotoImg}
+              src={EditPhotoIcon}
               alt='edit'
               className='absolute bottom-1 right-1'
             />
@@ -114,11 +114,11 @@ const Member: React.FC<{
         <p className='font-nino-mtavruli text-lg text-white'>{member.name}</p>
       </div>
       <div className='px-6 w-full h-1/6 flex justify-between items-center border-t-2 border-black'>
-        <MemberButton color='#88D06F' onClick={openDetailsImageModal} />
+        <DashboardButton color='#88D06F' onClick={openDetailsImageModal} />
         <Link to={`edit/${member._id}`}>
-          <MemberButton color='#F2C94C' />
+          <DashboardButton color='#F2C94C' />
         </Link>
-        <MemberButton color='#EB5757' onClick={openDeletePanelHandler} />
+        <DashboardButton color='#EB5757' onClick={openDeletePanelHandler} />
       </div>
     </div>
   );

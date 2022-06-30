@@ -1,4 +1,4 @@
-const MemberButton: React.FC<{
+const DashboardButton: React.FC<{
   color: string;
   onClick?: () => void;
 }> = (props) => {
@@ -19,4 +19,4 @@ const MemberButton: React.FC<{
   );
 };
 
-export default MemberButton;
+export default DashboardButton;

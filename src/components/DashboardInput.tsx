@@ -1,9 +1,9 @@
 import { UseFormRegisterReturn } from 'react-hook-form';
 
-const Input: React.FC<{
+const DashboardInput: React.FC<{
   type: string;
   placeholder: string;
-  register: UseFormRegisterReturn;
+  register?: UseFormRegisterReturn;
   error?: string | undefined;
   defaultValue?: string | number;
 }> = (props) => {
@@ -25,4 +25,4 @@ const Input: React.FC<{
   );
 };
 
-export default Input;
+export default DashboardInput;
