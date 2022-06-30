@@ -35,6 +35,7 @@ const App: React.FC = () => {
           <Route index element={<Main />} />
         </Route>
       )}
+      <Route path='*' element={<Landing />} />
       <Route index element={<Landing />} />
     </Routes>
   );

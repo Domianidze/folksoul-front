@@ -45,7 +45,11 @@ const MemberImageModal: React.FC<{
         className='my-16 relative w-56 h-56 flex justify-center items-center border border-white rounded-full shadow-primary'
         style={{ backgroundColor: props.bgColor }}
       >
-        <img src={preview ? preview : props.defaultImage} alt='avatar' />
+        <img
+          src={preview ? preview : props.defaultImage}
+          alt='avatar'
+          className='max-h-52'
+        />
       </div>
       <form onSubmit={submitHandler}>
         <ModalButton

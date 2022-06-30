@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import { Input } from './components';
 import { AuthContext } from 'state';
+import { getExpiresInSec } from './util';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -24,9 +25,10 @@ const Login: React.FC = () => {
   const loginHandler = handleSubmit(async (data) => {
     try {
       const response = await axios.post(`${API_URL}/login`, data);
-      const token = response.data.token;
+      const token: string = response.data.token;
+      const expiresIn = getExpiresInSec(response.data.expiresIn);
 
-      authCtx.onLogIn(token);
+      authCtx.onLogIn(token, expiresIn);
       navigate('/dashboard');
     } catch (err: any) {
       const error = err?.response?.data?.message;

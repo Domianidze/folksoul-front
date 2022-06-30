@@ -71,7 +71,7 @@ const SocialMedia: React.FC<{
         </div>
       )}
       <div className='relative'>
-        <img src={socialMedia.iconUrl} alt='icon' className='w-10' />
+        <img src={socialMedia.iconUrl} alt='icon' className='max-h-10' />
         <button
           type='button'
           onClick={openImageModalHandler}

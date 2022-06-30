@@ -43,7 +43,7 @@ const SocialMediaImageModal: React.FC<{
       <img
         src={preview ? preview : props.defaultImage}
         alt='icon'
-        className='my-16 w-56 border'
+        className='my-16 max-h-56'
       />
       <form onSubmit={submitHandler}>
         <ModalButton

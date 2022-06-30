@@ -90,7 +90,7 @@ const Member: React.FC<{
           <img
             src={props.member.avatarUrl}
             alt={props.member.name}
-            className='pt-1 h-14'
+            className='pt-1 max-h-14'
           ></img>
           <div
             className='absolute bottom-0 translate-y-1/2 w-20 h-7 flex justify-center items-center bg-primary-gold border-4 rounded-2xl shadow-primary'

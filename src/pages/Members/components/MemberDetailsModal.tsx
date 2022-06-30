@@ -15,7 +15,7 @@ const MemberImageModal: React.FC<{
           className='my-6 relative w-32 h-32 flex justify-center items-center shrink-0 border border-white rounded-full shadow-primary '
           style={{ backgroundColor: member.color }}
         >
-          <img src={member.avatarUrl} alt='avatar' className='h-24' />
+          <img src={member.avatarUrl} alt='avatar' className='max-h-28' />
         </div>
         <p className='font-nino-mtavruli'>
           ორბიტალური დაშორება:{' '}

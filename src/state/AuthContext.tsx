@@ -3,12 +3,12 @@ import React, { useState, PropsWithChildren } from 'react';
 const AuthContext = React.createContext<{
   token: string;
   isLoggedIn: boolean;
-  onLogIn: (token: string) => void;
+  onLogIn: (token: string, expiresIn: number | undefined) => void;
   onLogOut: () => void;
 }>({
   token: '',
   isLoggedIn: false,
-  onLogIn: (token: string) => {},
+  onLogIn: (token: string, expiresIn: number | undefined) => {},
   onLogOut: () => {},
 });
 
@@ -18,14 +18,16 @@ export const AuthContextProvider: React.FC<PropsWithChildren<unknown>> = (
   const [token, setToken] = useState('');
   const isLoggedIn = !!token;
 
-  const logInHandler = (token: string) => {
-    setToken(token);
-  };
-
   const logOutHandler = () => {
     setToken('');
-    localStorage.removeItem('token');
-    localStorage.removeItem('username');
+  };
+
+  const logInHandler = (token: string, expiresIn: number | undefined) => {
+    setToken(token);
+
+    if (expiresIn) {
+      setTimeout(logOutHandler, expiresIn * 1000);
+    }
   };
 
   return (

@@ -34,7 +34,7 @@ const SocialMedias: React.FC = (props) => {
             rel='noreferrer'
             key={index}
           >
-            <img src={item.iconUrl} alt={item.name} className='w-10'></img>
+            <img src={item.iconUrl} alt={item.name} className='max-h-10'></img>
           </a>
         );
       })}

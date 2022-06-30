@@ -1,5 +1,7 @@
+import { useContext } from 'react';
 import { Outlet } from 'react-router-dom';
 
+import { AuthContext } from 'state';
 import { ListItem } from './components';
 import {
   MainIcon,
@@ -10,6 +12,8 @@ import {
 } from 'assets';
 
 const Dashboard: React.FC = () => {
+  const authCtx = useContext(AuthContext);
+
   return (
     <div className='w-100 h-screen max-h-screen flex justify-center items-center bg-primary overflow-hidden'>
       <ul className='absolute -left-5 top-1/2 -translate-y-1/2 w-80 h-112 flex justify-center items-center flex-col font-nino-mtavruli bg-custom-black border border-custom-gray rounded-3xl'>
@@ -24,6 +28,7 @@ const Dashboard: React.FC = () => {
         <li className='py-8 w-full h-12'>
           <button
             type='button'
+            onClick={authCtx.onLogOut}
             className='px-12 w-full h-full flex items-center text-lg text-white'
           >
             <img src={LogOutIcon} alt='log out' className='pb-2 pr-3' />
