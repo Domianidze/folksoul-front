@@ -1,5 +1,7 @@
+import { useContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
+import { AuthContext } from 'state';
 import {
   Landing,
   LogIn,
@@ -13,23 +15,27 @@ import {
 } from 'pages';
 
 const App: React.FC = () => {
+  const authCtx = useContext(AuthContext);
+
   return (
     <Routes>
-      <Route index element={<Landing />} />
       <Route path='/login' element={<LogIn />} />
       <Route path='/:memberId' element={<Landing />} />
-      <Route path='/dashboard' element={<Dashboard />}>
-        <Route index element={<Main />} />
-        <Route path='members' element={<Members />}>
-          <Route path='add' element={<UpsertMember />} />
-          <Route path='edit/:memberId' element={<UpsertMember />} />
+      {authCtx.isLoggedIn && (
+        <Route path='/dashboard' element={<Dashboard />}>
+          <Route path='members' element={<Members />}>
+            <Route path='add' element={<UpsertMember />} />
+            <Route path='edit/:memberId' element={<UpsertMember />} />
+          </Route>
+          <Route path='social-medias' element={<SocialMedias />}>
+            <Route path='add' element={<UpsertSocialMedia />} />
+            <Route path='edit/:socialMediaId' element={<UpsertSocialMedia />} />
+          </Route>
+          <Route path='about' element={<About />} />
+          <Route index element={<Main />} />
         </Route>
-        <Route path='social-medias' element={<SocialMedias />}>
-          <Route path='add' element={<UpsertSocialMedia />} />
-          <Route path='edit/:socialMediaId' element={<UpsertSocialMedia />} />
-        </Route>
-        <Route path='about' element={<About />} />
-      </Route>
+      )}
+      <Route index element={<Landing />} />
     </Routes>
   );
 };
