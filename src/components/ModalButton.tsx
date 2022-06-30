@@ -1,6 +1,6 @@
 const ModalButton: React.FC<{
   type: 'upload' | 'save';
-  onClick: () => void;
+  onClick?: () => void;
 }> = (props) => {
   const upload = props.type === 'upload';
 

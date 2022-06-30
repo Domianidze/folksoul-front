@@ -21,21 +21,11 @@ const SocialMedia: React.FC<{
   const [deletePanelOpen, setDeletePanelOpen] = useState<boolean>();
   const [imageModalOpen, setImageModalOpen] = useState<boolean>();
 
-  const openDeletePanelHandler = () => {
-    setDeletePanelOpen(true);
-  };
+  const openDeletePanelHandler = () => setDeletePanelOpen(true);
+  const closeDeletePanelHandler = () => setDeletePanelOpen(false);
 
-  const closeDeletePanelHandler = () => {
-    setDeletePanelOpen(false);
-  };
-
-  const openImageModalHandler = () => {
-    setImageModalOpen(true);
-  };
-
-  const closeImageModalHandler = () => {
-    setImageModalOpen(false);
-  };
+  const openImageModalHandler = () => setImageModalOpen(true);
+  const closeImageModalHandler = () => setImageModalOpen(false);
 
   const deleteSocialMediaHandler = async () => {
     try {
@@ -81,11 +71,7 @@ const SocialMedia: React.FC<{
         </div>
       )}
       <div className='relative'>
-        <img
-          src={socialMedia.iconUrl}
-          alt={socialMedia.name}
-          className='w-10'
-        />
+        <img src={socialMedia.iconUrl} alt='icon' className='w-10' />
         <button
           type='button'
           onClick={openImageModalHandler}

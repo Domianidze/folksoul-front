@@ -4,4 +4,6 @@ export { default as SocialMediasIcon } from './social-medias.png';
 export { default as AboutIcon } from './about.png';
 export { default as LogOutIcon } from './log-out.png';
 export { default as EditPhotoIcon } from './edit-photo.png';
+export { default as EditPhotoBigIcon } from './edit-photo-big.png';
+export { default as EditTextIcon } from './edit-text.png';
 export { default as TvImg } from './tv.png';

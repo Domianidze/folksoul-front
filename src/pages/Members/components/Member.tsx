@@ -21,29 +21,14 @@ const Member: React.FC<{
   const [detailsModalOpen, setDetailsModalOpen] = useState<boolean>();
   const [imageModalOpen, setImageModalOpen] = useState<boolean>();
 
-  const openDeletePanelHandler = () => {
-    setDeletePanelOpen(true);
-  };
+  const openDeletePanelHandler = () => setDeletePanelOpen(true);
+  const closeDeletePanelHandler = () => setDeletePanelOpen(false);
 
-  const closeDeletePanelHandler = () => {
-    setDeletePanelOpen(false);
-  };
+  const openDetailsModalHandler = () => setDetailsModalOpen(true);
+  const closeDetailsModalHandler = () => setDetailsModalOpen(false);
 
-  const openDetailsImageModal = () => {
-    setDetailsModalOpen(true);
-  };
-
-  const closeDetailsModalHandler = () => {
-    setDetailsModalOpen(false);
-  };
-
-  const openImageModalHandler = () => {
-    setImageModalOpen(true);
-  };
-
-  const closeImageModalHandler = () => {
-    setImageModalOpen(false);
-  };
+  const openImageModalHandler = () => setImageModalOpen(true);
+  const closeImageModalHandler = () => setImageModalOpen(false);
 
   const deleteMemberHandler = async () => {
     try {
@@ -102,7 +87,7 @@ const Member: React.FC<{
           className='relative w-36 h-36 flex justify-center items-center border border-white rounded-full'
           style={{ backgroundColor: member.color }}
         >
-          <img src={member.avatarUrl} alt={`${member.name} avatar`} />
+          <img src={member.avatarUrl} alt='avatar' />
           <button type='button' onClick={openImageModalHandler}>
             <img
               src={EditPhotoIcon}
@@ -114,7 +99,7 @@ const Member: React.FC<{
         <p className='font-nino-mtavruli text-lg text-white'>{member.name}</p>
       </div>
       <div className='px-6 w-full h-1/6 flex justify-between items-center border-t-2 border-black'>
-        <DashboardButton color='#88D06F' onClick={openDetailsImageModal} />
+        <DashboardButton color='#88D06F' onClick={openDetailsModalHandler} />
         <Link to={`edit/${member._id}`}>
           <DashboardButton color='#F2C94C' />
         </Link>

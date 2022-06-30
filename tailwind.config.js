@@ -26,6 +26,7 @@ module.exports = {
         'custom-black': '#333333',
         'custom-gray': '#898989',
         'custom-beige': '#C3B6B2',
+        'light-gray': '#E5E5E5',
         'light-red': '#EB5757',
         'light-blue': '#3A7DA3',
         'lighter-blue': '#2F80ED',
@@ -42,6 +43,9 @@ module.exports = {
       boxShadow: {
         primary: '2px 4px 14px 0 #000000',
         'primary-inner': 'inset 2px 4px 14px 0 #000000',
+      },
+      maxWidth: {
+        '4.5xl': '60rem',
       },
       skew: {
         32: '32deg',
