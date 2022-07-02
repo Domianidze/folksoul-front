@@ -1,46 +1,129 @@
-# Getting Started with Create React App
+![Logo](./readme/assets/img/logo.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Inside Joke
+ 
+A website made for a musical band Inside Joke.
 
-## Available Scripts
+### Table of Contents
 
-In the project directory, you can run:
+* [Prerequisites](#prerequisites)
+* [Tech Stack](#tech-stack)
+* [Getting Started](#getting-started)
+* [Testing](#testing)
+* [Project Structure](#project-structure)
+* [Deployment](#deployment)
+* [Resources](#resources)
 
-### `npm start`
+### Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* <img src="./readme/assets/img/nodejs.png" height="15px" style='padding-right: 5px'> *Node JS @16.14.2*
+* <img src="./readme/assets/img/npm.png" height="15px" style='padding-right: 5px'/> *npm 8.5.0*
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Tech Stack
 
-### `npm test`
+* <img src="./readme/assets/img/typescript.png" height="15"  style='padding-right: 5px'> [Typescript @4.6.4](https://www.typescriptlang.org/) - programming language
+* <img src="./readme/assets/img/react.png" height="15"  style='padding-right: 5px'> [React @18.0.0](https://reactjs.org) - front-end framework
+* <img src="./readme/assets/img/react-router.png" height="15"  style='padding-right: 5px'> [React Router @6.3.0](https://reactrouter.com/) - routing library
+* <img src="./readme/assets/img/react-hook-form.png" height="15"  style='padding-right: 5px'> [React Hook Form @7.30.0](https://react-hook-form.com/) - form validation library
+* <img src="./readme/assets/img/tailwind.png" height="15"  style='padding-right: 5px'> [Tailwind @3.0.24](https://tailwindcss.com/) - css framework
+* <img src="./readme/assets/img/cypress.png" height="15"  style='padding-right: 5px'> [Cypress  @9.6.0](https://www.cypress.io/) - end-to-end testing framework
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Getting Started
 
-### `npm run build`
+1\. First of all clone the repository from github:
+```sh
+git clone https://github.com/Domianidze/inside-joke.git
+```
+2\. Secondly install all the dependencies:
+```sh
+npm install
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3\. Then create the config file and change it if needed:
+```sh
+cp .env.example .env
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4\. Lastly start the dev server:
+```sh
+cp .env.example .env
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Testing
+Inside Joke uses ``` @cypress ```  for testing.
 
-### `npm run eject`
+you can run and view tests in the Cypress GUI. You can open the Cypress GUI  using the following commands:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1\. First of all create the config file and change it if needed:
+```sh
+cp cypress.config.ts.example cypress.config.ts
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2\. Then start the dev server:
+```sh
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+3\. Lastly open the Cypress GUI:
+```sh
+npx cypress open
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Project Structure
 
-## Learn More
+```bash
+├─── cypress # cypress files
+├─── readme # readme assets
+├─── public # public files
+├─── src # source codes
+│   ├─── assets # images and fonts
+│   ├─── components # reusable components
+│   ├───├─── component-name.tsx # component
+│   ├───├─── index.ts # export all components
+│   ├─── hooks # hook files 
+│   ├───├─── hook-name.ts # hook file
+│   ├───├─── index.ts # export all hooks
+│   ├─── pages # pages
+│   ├───├─── page-folder # page folder
+│   ├───├───├─── components # [OPTIONAL] reusable components
+│   ├───├───├───├─── component-name.tsx # component
+│   ├───├───├───├─── index.ts # export all components
+│   ├───├───├─── util # [OPTIONAL] utility functions
+│   ├───├───├───├─── util-function.ts # utility function
+│   ├───├───├───├─── index.ts # export utility functions
+│   ├───├───├─── page-name.tsx # page component
+│   ├───├───├─── index.ts # export default page
+│   ├───├─── index.ts # export all pages
+│   ├─── state # state managment files 
+│   ├───├─── state-name.tscx # component
+│   ├───├─── index.ts # export all states
+│   ├─── App.tsx # react app 
+│   ├─── index.css # global styles 
+│   ├─── index.tsx # index file 
+│   ├─── react-app-env.d.ts # essentialtypes 
+- .env-example # config file example
+- .gitignore # git ignore file
+- .babelrc.json # babel config file
+- .eslintrc.json # eslint config file
+- .prettierrc.json # prettier config file
+- tailwind.config.js # tailwind config file
+- postcss.config.js # postcss config file
+- tsconfig.json # typescript config file
+- package.json # dependency manager configurations
+- package-lock.json # dependency manager configurations
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Deployment
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+We have a helper script which helps us in deployment.
+
+Simply run this command to get deplyoment ready files in the  ``` public ```  folder:
+
+```sh
+npm run build
+```
+
+### Resources
+
+*  [Project Details](https://redberry.gitbook.io/assignment-iii-inside-joke/)
+*  [Git Commit Rules](https://redberry.gitbook.io/resources/git-is-semantikuri-komitebi)
