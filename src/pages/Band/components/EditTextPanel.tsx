@@ -47,18 +47,21 @@ const EditTextPanel: React.FC<{
         className='w-full flex flex-col items-center'
       >
         <div className='pb-5 relative w-full'>
-          <textarea
-            className='p-5 mr-5 w-full h-112 bg-light-gray outline-none rounded-2xl shadow-primary resize-none'
-            placeholder='ინფორმაცია...'
-            {...register('information', {
-              required: 'ინფორმაცია სავალდებულოა',
-              pattern: {
-                value: /^[ა-ჰ-1-9 -;:'",.?!/—„“]+$/,
-                message: 'ინფორმაცია უნდა შედგებოდეს მხოლოდ ქართული ასოებისგან',
-              },
-            })}
-            defaultValue={props.defaultInformation}
-          />
+          <div className='p-5 mr-5 w-full h-112 bg-light-gray rounded-2xl shadow-primary '>
+            <textarea
+              className='pr-10 w-full h-full text-justify bg-light-gray outline-none resize-none'
+              placeholder='ინფორმაცია...'
+              {...register('information', {
+                required: 'ინფორმაცია სავალდებულოა',
+                pattern: {
+                  value: /^[ა-ჰ-1-9 -;:'",.?!/—„“]+$/,
+                  message:
+                    'ინფორმაცია უნდა შედგებოდეს მხოლოდ ქართული ასოებისგან',
+                },
+              })}
+              defaultValue={props.defaultInformation}
+            />
+          </div>
           {errors?.information?.message && (
             <p className='pl-5 absolute text-sm text-light-red'>
               {errors.information.message}
