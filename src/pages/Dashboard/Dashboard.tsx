@@ -7,7 +7,7 @@ import {
   MainIcon,
   MembersIcon,
   SocialMediasIcon,
-  AboutIcon,
+  BandIcon,
   LogOutIcon,
 } from 'assets';
 
@@ -17,15 +17,26 @@ const Dashboard: React.FC = () => {
   return (
     <div className='w-100 h-screen max-h-screen flex justify-center items-center bg-primary overflow-hidden'>
       <ul className='absolute -left-5 top-1/2 -translate-y-1/2 w-80 h-112 flex justify-center items-center flex-col font-nino-mtavruli bg-custom-black border border-custom-gray rounded-3xl'>
-        <ListItem end to='' img={MainIcon} text='მთავარი' />
-        <ListItem to='members' img={MembersIcon} text='ჯგუფის წევრები' />
+        <ListItem id='nav-main' end to='' img={MainIcon} text='მთავარი' />
         <ListItem
+          id='nav-members'
+          to='members'
+          img={MembersIcon}
+          text='ჯგუფის წევრები'
+        />
+        <ListItem
+          id='nav-social-medias'
           to='social-medias'
           img={SocialMediasIcon}
           text='სოციალური ბმულები'
         />
-        <ListItem to='about' img={AboutIcon} text='ბენდის შესახებ' />
-        <li className='py-8 w-full h-12'>
+        <ListItem
+          id='nav-band'
+          to='band'
+          img={BandIcon}
+          text='ბენდის შესახებ'
+        />
+        <li id='nav-logout' className='py-8 w-full h-12'>
           <button
             type='button'
             onClick={authCtx.onLogOut}

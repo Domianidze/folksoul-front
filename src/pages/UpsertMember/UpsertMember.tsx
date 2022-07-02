@@ -59,9 +59,7 @@ const UpsertMember = () => {
       }
       outletCtx.updateMembers();
       navigate('/dashboard/members');
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   });
 
   const [member, setMember] = useState<MemberType | undefined>();
@@ -100,6 +98,7 @@ const UpsertMember = () => {
         <DashboardInput
           type='text'
           placeholder='სახელი'
+          id='name-input'
           register={{
             ...register('name', {
               required: 'სახელი სავალდებულოა',
@@ -120,6 +119,7 @@ const UpsertMember = () => {
           <DashboardInput
             type='text'
             placeholder='ინსტრუმენტი'
+            id='instrument-input'
             register={{
               ...register('instrument', {
                 required: 'ინსტრუმენტი სავალდებულოა',
@@ -140,6 +140,7 @@ const UpsertMember = () => {
           <DashboardInput
             type='number'
             placeholder='ორბიტის სიგრძე'
+            id='orbit-width-input'
             register={{
               ...register('orbitWidth', {
                 required: 'ორბიტის სიგრძე სავალდებულოა',
@@ -151,6 +152,7 @@ const UpsertMember = () => {
           <DashboardInput
             type='text'
             placeholder='ფერი'
+            id='color-input'
             register={{
               ...register('color', {
                 required: 'ფერი სავალდებულოა',
@@ -168,6 +170,7 @@ const UpsertMember = () => {
           <textarea
             className='p-5 w-full h-56 border border-primary-dark-blue rounded-md outline-none resize-none'
             placeholder='ბიოგრაფია...'
+            id='biography-textarea'
             {...register('biography', {
               required: 'ბიოგრაფია სავალდებულოა',
               pattern: {
@@ -185,6 +188,7 @@ const UpsertMember = () => {
         </div>
         <button
           type='submit'
+          id='submit-btn'
           className='mt-3 w-44 h-14 font-nino-mtavruli text-white bg-primary-dark-blue rounded-lg'
         >
           {memberId ? 'შეცვალე წევრი' : 'დაამატე წევრი'}

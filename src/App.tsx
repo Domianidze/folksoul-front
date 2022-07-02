@@ -11,7 +11,7 @@ import {
   UpsertMember,
   SocialMedias,
   UpsertSocialMedia,
-  About,
+  Band,
 } from 'pages';
 
 const App: React.FC = () => {
@@ -31,7 +31,7 @@ const App: React.FC = () => {
             <Route path='add' element={<UpsertSocialMedia />} />
             <Route path='edit/:socialMediaId' element={<UpsertSocialMedia />} />
           </Route>
-          <Route path='about' element={<About />} />
+          <Route path='band' element={<Band />} />
           <Route index element={<Main />} />
         </Route>
       )}

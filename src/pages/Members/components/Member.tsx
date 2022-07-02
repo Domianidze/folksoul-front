@@ -68,6 +68,7 @@ const Member: React.FC<{
             <button
               type='button'
               onClick={deleteMemberHandler}
+              id={`${member.name}-remove-yes-btn`}
               className='mr-2 pt-1 w-10 h-8 font-nino-mtavruli bg-primary-green rounded-lg'
             >
               კი
@@ -75,6 +76,7 @@ const Member: React.FC<{
             <button
               type='button'
               onClick={closeDeletePanelHandler}
+              id={`${member.name}-remove-no-btn`}
               className='pt-1 w-10 h-8 font-nino-mtavruli bg-light-red rounded-lg'
             >
               არა
@@ -92,6 +94,7 @@ const Member: React.FC<{
             <img
               src={EditPhotoIcon}
               alt='edit'
+              id={`${member.name}-change-avatar-btn`}
               className='absolute bottom-1 right-1'
             />
           </button>
@@ -99,11 +102,19 @@ const Member: React.FC<{
         <p className='font-nino-mtavruli text-lg text-white'>{member.name}</p>
       </div>
       <div className='px-6 w-full h-1/6 flex justify-between items-center border-t-2 border-black'>
-        <DashboardButton color='#88D06F' onClick={openDetailsModalHandler} />
-        <Link to={`edit/${member._id}`}>
+        <DashboardButton
+          id={`${member.name}-details-btn`}
+          color='#88D06F'
+          onClick={openDetailsModalHandler}
+        />
+        <Link id={`${member.name}-edit-btn`} to={`edit/${member._id}`}>
           <DashboardButton color='#F2C94C' />
         </Link>
-        <DashboardButton color='#EB5757' onClick={openDeletePanelHandler} />
+        <DashboardButton
+          id={`${member.name}-remove-btn`}
+          color='#EB5757'
+          onClick={openDeletePanelHandler}
+        />
       </div>
     </div>
   );

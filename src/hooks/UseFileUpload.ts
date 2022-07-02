@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 
+import { ChangeEventHandler } from 'react';
+
 const UseFileUpload = () => {
   const [image, setImage] = useState<File | null>();
   const [preview, setPreview] = useState<string | null>();
@@ -23,12 +25,13 @@ const UseFileUpload = () => {
     inputRef.current.click();
   };
 
-  const changeHandler = (e: any) => {
-    const file = e.target.files[0];
-    if (file) {
+  const changeHandler: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const files = e.target.files;
+
+    if (files) {
+      const file: File = files[0];
+
       setImage(file);
-    } else {
-      setImage(null);
     }
   };
 

@@ -32,9 +32,7 @@ const Landing: React.FC = () => {
 
         setMembers(data);
         setActiveMember(active);
-      } catch (err) {
-        console.error(err);
-      }
+      } catch (err) {}
     };
 
     getMembers();

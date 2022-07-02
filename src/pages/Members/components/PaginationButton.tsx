@@ -12,6 +12,7 @@ const PaginationButton: React.FC<{
   return (
     <button
       type='button'
+      id={`pagination-btn-${props.to}`}
       className={`mx-2 w-5 h-5 bg-dark-gray rounded-full ${
         active ? '' : 'opacity-50'
       }`}

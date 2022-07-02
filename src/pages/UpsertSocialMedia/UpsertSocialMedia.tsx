@@ -59,9 +59,7 @@ const UpsertSocialMedia = () => {
       }
       outletCtx.updateSocialMedias();
       navigate('/dashboard/social-medias');
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   });
 
   const [socialMedia, setSocialMedia] = useState<SocialMediaType | undefined>();
@@ -100,6 +98,7 @@ const UpsertSocialMedia = () => {
         <DashboardInput
           type='text'
           placeholder='სახელი'
+          id='name-input'
           register={{
             ...register('name', {
               required: 'სახელი სავალდებულოა',
@@ -116,6 +115,7 @@ const UpsertSocialMedia = () => {
           <input
             type='text'
             placeholder='ბმული'
+            id='link-input'
             {...register('link', {
               required: 'ბმული სავალდებულოა',
               pattern: {
@@ -135,6 +135,7 @@ const UpsertSocialMedia = () => {
         </div>
         <button
           type='submit'
+          id='submit-btn'
           className='mt-3 w-72 h-14 font-nino-mtavruli text-white bg-primary-dark-blue rounded-lg'
         >
           {socialMediaId

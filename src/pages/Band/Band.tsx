@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import { DashboardTitle } from 'components';
-import { AboutImageModal, EditTextPanel } from './components';
+import { BandImageModal, EditTextPanel } from './components';
 import { EditPhotoBigIcon, EditTextIcon } from 'assets';
 import { BandType } from 'Types';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-const About: React.FC = () => {
+const Band: React.FC = () => {
   const [band, setBand] = useState<BandType>();
   const [imageModalOpen, setImageModalOpen] = useState<boolean>();
   const [editTextPanelOpen, setEditTextPanelOpen] = useState<boolean>();
@@ -35,7 +35,7 @@ const About: React.FC = () => {
   return (
     <div className='relative w-full h-full flex items-center flex-col'>
       {imageModalOpen && (
-        <AboutImageModal
+        <BandImageModal
           defaultImage={band?.logoUrl}
           onClose={closeImageModalHandler}
           updateBand={updateBand}
@@ -59,6 +59,7 @@ const About: React.FC = () => {
                 <img
                   src={EditPhotoBigIcon}
                   alt='edit'
+                  id='set-logo-btn'
                   className='absolute bottom-1 right-1 rounded-full shadow-primary'
                 />
               </button>
@@ -71,6 +72,7 @@ const About: React.FC = () => {
             <img
               src={EditTextIcon}
               alt='edit'
+              id='set-information-btn'
               className='absolute left-10 top-1/2'
             />
           </button>
@@ -80,4 +82,4 @@ const About: React.FC = () => {
   );
 };
 
-export default About;
+export default Band;

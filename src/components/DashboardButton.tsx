@@ -1,4 +1,5 @@
 const DashboardButton: React.FC<{
+  id?: string;
   color: string;
   onClick?: () => void;
 }> = (props) => {
@@ -6,6 +7,7 @@ const DashboardButton: React.FC<{
     <button
       type='button'
       onClick={props.onClick}
+      id={props.id}
       className='w-6 h-6 flex justify-center items-center bg-black rounded-full'
       style={{
         border: `1px solid ${props.color}`,

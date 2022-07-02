@@ -43,6 +43,7 @@ const SocialMedias: React.FC = () => {
       </div>
       <Link
         to='add'
+        id='add-social-media-btn'
         className='pt-10 absolute bottom-10 font-nino-mtavruli-bold text-lg text-light-blue underline'
       >
         დაამატე ახალი სოციალური ბმული

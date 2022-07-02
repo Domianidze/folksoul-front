@@ -68,6 +68,7 @@ const EditTextPanel: React.FC<{
         <ModalButton type='save' />
         <button
           onClick={props.onClose}
+          id='submit-btn'
           className='pt-3 font-nino-mtavruli-bold text-lg text-light-blue underline'
         >
           გადი უკან

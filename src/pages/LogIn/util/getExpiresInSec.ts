@@ -12,8 +12,6 @@ const getExpiresInSec = (expiresIn: string) => {
   if (expiresIn.endsWith('h')) {
     return expiresInSec * 3600;
   }
-
-  return;
 };
 
 export default getExpiresInSec;

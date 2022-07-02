@@ -80,6 +80,7 @@ const Login: React.FC = () => {
                 },
               }),
             }}
+            id='username-input'
             error={errors?.username?.message}
           />
           <Input
@@ -94,10 +95,12 @@ const Login: React.FC = () => {
                 },
               }),
             }}
+            id='password-input'
             error={errors?.password?.message}
           />
           <button
             type='submit'
+            id='submit-btn'
             className='mt-5 w-56 h-14 bg-navy-green font-nino-mtavruli text-white border border-white rounded-sm duration-500 hover:opacity-90'
           >
             შემობრძანდი

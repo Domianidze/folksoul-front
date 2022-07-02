@@ -16,6 +16,7 @@ const Modal: React.FC<
         <button
           type='button'
           onClick={props.onClose}
+          id='modal-close-btn'
           className='absolute top-5 right-5'
         >
           <img src={CloseIcon} alt='close' />

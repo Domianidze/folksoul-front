@@ -57,6 +57,7 @@ const SocialMedia: React.FC<{
           <button
             type='button'
             onClick={deleteSocialMediaHandler}
+            id={`${socialMedia.name}-remove-yes-btn`}
             className='mx-2 pt-1 w-10 h-8 font-nino-mtavruli bg-primary-green rounded-lg'
           >
             კი
@@ -64,6 +65,7 @@ const SocialMedia: React.FC<{
           <button
             type='button'
             onClick={closeDeletePanelHandler}
+            id={`${socialMedia.name}-remove-no-btn`}
             className='pt-1 w-10 h-8 font-nino-mtavruli bg-light-red rounded-lg'
           >
             არა
@@ -75,6 +77,7 @@ const SocialMedia: React.FC<{
         <button
           type='button'
           onClick={openImageModalHandler}
+          id={`${socialMedia.name}-change-icon-btn`}
           className='absolute -bottom-1 -right-1 w-5'
         >
           <img src={EditPhotoIcon} alt='edit' />
@@ -92,10 +95,17 @@ const SocialMedia: React.FC<{
         {socialMedia.link}
       </a>
       <div className='w-20 flex justify-between'>
-        <Link to={`edit/${socialMedia._id}`}>
+        <Link
+          to={`edit/${socialMedia._id}`}
+          id={`${socialMedia.name}-edit-btn`}
+        >
           <DashboardButton color='#F2C94C' />
         </Link>
-        <DashboardButton color='#EB5757' onClick={openDeletePanelHandler} />
+        <DashboardButton
+          id={`${socialMedia.name}-remove-btn`}
+          color='#EB5757'
+          onClick={openDeletePanelHandler}
+        />
       </div>
     </div>
   );

@@ -15,13 +15,11 @@ const SocialMedias: React.FC = (props) => {
         const data: SocialMediaType[] = response.data;
 
         setSocialMedias(data);
-      } catch (err) {
-        console.error(err);
-      }
+      } catch (err) {}
     };
 
     getSocialMedias();
-  });
+  }, []);
 
   return (
     <div className='py-5 w-full flex justify-center items-center'>

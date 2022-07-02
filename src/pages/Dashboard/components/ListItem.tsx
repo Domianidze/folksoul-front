@@ -2,6 +2,7 @@ import { useLocation } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 
 const ListItem: React.FC<{
+  id: string;
   to: string;
   img: string;
   text: string;
@@ -12,7 +13,10 @@ const ListItem: React.FC<{
     props.to === pathname.replace('dashboard', '').replaceAll('/', '');
 
   return (
-    <li className={`my-4 w-full h-12 ${isActive ? 'bg-content-white' : ''}`}>
+    <li
+      id={props.id}
+      className={`my-4 w-full h-12 ${isActive ? 'bg-content-white' : ''}`}
+    >
       <NavLink
         to={props.to}
         className={`px-12 w-full h-full flex items-center text-lg ${

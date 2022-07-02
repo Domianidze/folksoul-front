@@ -1,11 +1,13 @@
 {
     "extends": [
         "react-app",
-        "prettier"
+        "prettier",
+        "plugin:cypress/recommended"
       ],
-    "plugins": ["prettier"],
+    "plugins": ["prettier", "cypress"],
     "rules": {
         "prettier/prettier": "error",
-        "@typescript-eslint/no-unused-vars": "error"
+        "@typescript-eslint/no-unused-vars": "error",
+        "cypress/no-unnecessary-waiting": "off"
     }
 }

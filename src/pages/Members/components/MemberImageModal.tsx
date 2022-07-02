@@ -1,8 +1,7 @@
 import axios from 'axios';
 
-import { UseFileUpload } from 'hooks';
-import { Modal, ModalTitle, ModalButton } from 'components';
-import { UseBearerToken } from 'hooks';
+import { UseBearerToken, UseFileUpload } from 'hooks';
+import { Modal, ModalTitle, ImageForm } from 'components';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -51,19 +50,13 @@ const MemberImageModal: React.FC<{
           className='max-h-52'
         />
       </div>
-      <form onSubmit={submitHandler}>
-        <ModalButton
-          type={preview ? 'save' : 'upload'}
-          onClick={clickHandler}
-        />
-        <input
-          type='file'
-          accept='image/png, image/jpeg, image/jpg'
-          onChange={changeHandler}
-          ref={inputRef}
-          className='hidden'
-        />
-      </form>
+      <ImageForm
+        preview={preview}
+        inputRef={inputRef}
+        submitHandler={submitHandler}
+        clickHandler={clickHandler}
+        changeHandler={changeHandler}
+      />
     </Modal>
   );
 };

@@ -1,5 +1,6 @@
 const ModalButton: React.FC<{
   type: 'upload' | 'save';
+  id?: string;
   onClick?: () => void;
 }> = (props) => {
   const upload = props.type === 'upload';
@@ -8,6 +9,7 @@ const ModalButton: React.FC<{
     <button
       type={upload ? 'button' : 'submit'}
       onClick={props.onClick}
+      id={props.id}
       className={`w-40 h-10 rounded-md shadow-md ${
         upload ? 'bg-primary-dark-blue' : 'bg-primary-green'
       }`}

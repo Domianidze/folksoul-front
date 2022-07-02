@@ -73,6 +73,7 @@ const Members: React.FC = () => {
       </div>
       <Link
         to='add'
+        id='add-member-btn'
         className='absolute bottom-10 font-nino-mtavruli-bold text-lg text-light-blue underline'
       >
         ახალი წევრი გვყავს?

@@ -19,3 +19,9 @@ export type BandType = {
   logoUrl: string;
   information: string;
 };
+
+export type FileInputEvent = {
+  target: {
+    files: File[];
+  };
+};

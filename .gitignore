@@ -12,6 +12,13 @@
 #vscode
 .vscode
 
+# cypress
+.nyc_output
+coverage
+videos
+screenshots
+cypress.config.ts
+
 # misc
 .DS_Store
 .env

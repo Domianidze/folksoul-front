@@ -1,0 +1,38 @@
+[
+  {
+    "_id": "62b842585e2125b9104478d1",
+    "avatarUrl": "http://localhost:8080/public/img/default-member.png",
+    "name": "გელა",
+    "instrument": "გიტარა",
+    "orbitWidth": 32,
+    "color": "#EB5757",
+    "biography": "გიტარისტი გელა."
+  },
+  {
+    "_id": "62b842585e2125b9104478db2",
+    "avatarUrl": "http://localhost:8080/public/img/default-member.png",
+    "name": "გელა",
+    "instrument": "გიტარა",
+    "orbitWidth": 64,
+    "color": "#EB5757",
+    "biography": "გიტარისტი გელა."
+  },
+  {
+    "_id": "62b842585e2125b9104478d3",
+    "avatarUrl": "http://localhost:8080/public/img/default-member.png",
+    "name": "გელა",
+    "instrument": "გიტარა",
+    "orbitWidth": 128,
+    "color": "#EB5757",
+    "biography": "გიტარისტი გელა."
+  },
+  {
+    "_id": "62b842585e2125b9104478d4",
+    "avatarUrl": "http://localhost:8080/public/img/default-member.png",
+    "name": "გელა",
+    "instrument": "გიტარა",
+    "orbitWidth": 174,
+    "color": "#EB5757",
+    "biography": "გიტარისტი გელა."
+  }
+]

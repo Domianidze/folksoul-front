@@ -6,4 +6,4 @@ export { default as Members } from './Members';
 export { default as UpsertMember } from './UpsertMember';
 export { default as SocialMedias } from './SocialMedias';
 export { default as UpsertSocialMedia } from './UpsertSocialMedia';
-export { default as About } from './About';
+export { default as Band } from './Band/index';

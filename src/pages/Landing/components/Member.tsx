@@ -81,6 +81,7 @@ const Member: React.FC<{
         <motion.div
           animate={animateStatic}
           initial={initialStatic}
+          id='member'
           className='absolute top-1/2 -right-6 w-16 h-16 rounded-full flex justify-center items-center border-4 border-primary-gold shadow-primary pointer-events-auto z-10'
           style={{
             backgroundColor: props.member.color,
