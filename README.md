@@ -2,7 +2,7 @@
 
 ## Inside Joke
  
-A website made for a musical band Inside Joke.
+A website made for a musical band Inside Joke. You can visit the production version [here!](https://inside-joke.sandro.redberryinternship.ge/)
 
 ### Table of Contents
 
@@ -32,7 +32,7 @@ A website made for a musical band Inside Joke.
 
 1\. First of all clone the repository from github:
 ```sh
-git clone https://github.com/Domianidze/inside-joke.git
+git clone https://github.com/RedberryInternship/inside-joke-front-Domianidze.git
 ```
 2\. Secondly install all the dependencies:
 ```sh
@@ -46,7 +46,7 @@ cp .env.example .env
 
 4\. Lastly start the dev server:
 ```sh
-cp .env.example .env
+npm start
 ```
 
 ### Testing
@@ -67,6 +67,16 @@ npm start
 3\. Lastly open the Cypress GUI:
 ```sh
 npx cypress open
+```
+
+### Deployment
+
+We have a helper script which helps us in deployment.
+
+Simply run this command to get deplyoment ready files in the  ``` public ```  folder:
+
+```sh
+npm run build
 ```
 
 ### Project Structure
@@ -111,16 +121,6 @@ npx cypress open
 - tsconfig.json # typescript config file
 - package.json # dependency manager configurations
 - package-lock.json # dependency manager configurations
-```
-
-### Deployment
-
-We have a helper script which helps us in deployment.
-
-Simply run this command to get deplyoment ready files in the  ``` public ```  folder:
-
-```sh
-npm run build
 ```
 
 ### Resources
