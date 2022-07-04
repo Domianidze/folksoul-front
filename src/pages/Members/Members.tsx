@@ -48,7 +48,7 @@ const Members: React.FC = () => {
   return (
     <div className='pb-20 relative w-full h-full flex items-center flex-col'>
       <DashboardTitle title='ჯგუფების წევრები' />
-      <div className='px-28 w-full flex'>
+      <div className='px-28 w-full flex justify-center'>
         {members.slice(firstIndex, lastIndex).map((member) => {
           return (
             <Member

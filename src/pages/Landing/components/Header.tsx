@@ -3,7 +3,7 @@ import { LogoImg } from 'assets';
 
 const Header: React.FC = () => {
   return (
-    <div className='absolute top-0 left-0 py-8 px-24 w-full flex justify-between items-center'>
+    <div className='absolute top-0 left-0 py-8 px-24  w-full flex justify-between items-center z-50'>
       <img src={LogoImg} alt='Logo' className='w-40' />
       <Link
         to='/login'

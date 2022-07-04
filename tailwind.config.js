@@ -2,9 +2,14 @@
 module.exports = {
   content: ['./src/**/*.{ts,tsx}'],
   theme: {
+    screens: {
+      '2xl': '1388px',
+      '3xl': '1622px',
+    },
     extend: {
       spacing: {
         112: '30rem',
+        130: '32.5rem',
         150: '37.5rem',
         160: '40rem',
         168: '42.5rem',

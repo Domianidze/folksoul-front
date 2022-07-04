@@ -52,7 +52,7 @@ const Band: React.FC = () => {
         />
       ) : (
         <>
-          <div className='mb-20 px-12 overflow-y-auto flex items-center flex-col'>
+          <div className='mb-8 mx-16 px-12 overflow-y-auto flex items-center flex-col 3xl-mb-20 3xl:mx-0'>
             <div className='relative w-48 h-48 flex justify-center items-center bg-primary-dark-blue border border-white rounded-full shadow-primary shrink-0'>
               <img src={band?.logoUrl} alt={`band`} className='max-h-44' />
               <button type='button' onClick={openImageModalHandler}>

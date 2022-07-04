@@ -45,7 +45,7 @@ const Member: React.FC<{
   };
 
   return (
-    <div className='relative mx-14 w-56 h-72 bg-custom-black border border-black rounded-sm shadow-primary'>
+    <div className='relative mx-4 w-56 h-72 bg-custom-black border border-black rounded-sm shadow-primary 2xl:mx-14'>
       {detailsModalOpen && (
         <MemberDetailsModal
           member={member}

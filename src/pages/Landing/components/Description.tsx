@@ -47,9 +47,9 @@ const DescriptionCard: React.FC<{
   };
 
   return (
-    <div className='relative w-168 h-150 bg-primary-gold rounded-2xl shadow-xl'>
+    <div className='relative w-150 h-130 bg-primary-gold rounded-2xl shadow-xl 2xl:w-168 2xl:h-150'>
       <Bullets />
-      <div className='absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 flex justify-center items-center bg-primary border-2 border-content-white rounded-full shadow-primary'>
+      <div className='absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-60 h-60 flex justify-center items-center bg-primary border-2 border-content-white rounded-full shadow-primary 2xl:w-80 2xl:h-80'>
         <AnimatePresence exitBeforeEnter>
           <motion.img
             variants={easeVariants}
@@ -59,7 +59,7 @@ const DescriptionCard: React.FC<{
             key={props.activeMember?._id}
             src={member ? member.avatarUrl : bandData.logoUrl}
             alt='logo'
-            className='h-42'
+            className='max-h-42'
           ></motion.img>
         </AnimatePresence>
       </div>

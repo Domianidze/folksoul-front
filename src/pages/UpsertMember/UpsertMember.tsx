@@ -93,7 +93,7 @@ const UpsertMember = () => {
       />
       <form
         onSubmit={submitHandler}
-        className='w-150 flex items-center flex-col'
+        className='w-150 h-full flex justify-center items-center flex-col'
       >
         <DashboardInput
           type='text'
