@@ -6,19 +6,21 @@ import {
   useOutletContext,
 } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
 
-import { UseBearerToken } from 'hooks';
+import { useBearerToken } from 'hooks';
+import {
+  addSocialMediaRequest,
+  editSocialMediaRequest,
+  getSocialMediaRequest,
+} from 'services';
 import { DashboardTitle, DashboardInput } from 'components';
-import { SocialMediaType } from 'Types';
-
-const API_URL = process.env.REACT_APP_API_URL;
+import { SocialMediaType } from 'types';
 
 const UpsertSocialMedia = () => {
   const outletCtx: {
     updateSocialMedias: () => void;
   } = useOutletContext();
-  const bearerToken = UseBearerToken();
+  const bearerToken = useBearerToken();
   const navigate = useNavigate();
   const { socialMediaId } = useParams();
 
@@ -33,29 +35,16 @@ const UpsertSocialMedia = () => {
 
   const submitHandler = handleSubmit(async (data) => {
     try {
-      const headers = {
-        headers: {
-          Authorization: bearerToken,
-        },
-      };
-
       if (socialMediaId) {
-        await axios.put(
-          `${API_URL}/edit-social-media`,
+        await editSocialMediaRequest(
           {
             id: socialMediaId,
             ...data,
           },
-          headers
+          bearerToken
         );
       } else {
-        await axios.post(
-          `${API_URL}/add-social-media`,
-          {
-            ...data,
-          },
-          headers
-        );
+        await addSocialMediaRequest(data, bearerToken);
       }
       outletCtx.updateSocialMedias();
       navigate('/dashboard/social-medias');
@@ -67,7 +56,7 @@ const UpsertSocialMedia = () => {
   useEffect(() => {
     const getMember = async () => {
       try {
-        const response = await axios.post(`${API_URL}/get-social-media`, {
+        const response = await getSocialMediaRequest({
           id: socialMediaId,
         });
         const data: SocialMediaType = response.data;

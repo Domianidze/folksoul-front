@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
-import { SocialMediaType } from 'Types';
+import { useBearerToken } from 'hooks';
+import { deleteSocialMediaRequest } from 'services';
 import { SocialMediaImageModal } from './';
-import { UseBearerToken } from 'hooks';
 import { DashboardButton } from 'components';
 import { EditPhotoIcon } from 'assets';
-
-const API_URL = process.env.REACT_APP_API_URL;
+import { SocialMediaType } from 'types';
 
 const SocialMedia: React.FC<{
   socialMedia: SocialMediaType;
@@ -16,7 +14,7 @@ const SocialMedia: React.FC<{
 }> = (props) => {
   const { socialMedia } = props;
 
-  const bearerToken = UseBearerToken();
+  const bearerToken = useBearerToken();
 
   const [deletePanelOpen, setDeletePanelOpen] = useState<boolean>();
   const [imageModalOpen, setImageModalOpen] = useState<boolean>();
@@ -29,14 +27,12 @@ const SocialMedia: React.FC<{
 
   const deleteSocialMediaHandler = async () => {
     try {
-      await axios.delete(`${API_URL}/delete-social-media`, {
-        headers: {
-          Authorization: bearerToken,
-        },
-        data: {
+      await deleteSocialMediaRequest(
+        {
           id: socialMedia._id,
         },
-      });
+        bearerToken
+      );
       props.updateSocialMedias();
     } catch (err) {}
   };

@@ -1,4 +1,4 @@
-const getExpiresInSec = (expiresIn: string) => {
+export const getExpiresInSec = (expiresIn: string) => {
   const expiresInSec: number = parseInt(expiresIn);
 
   if (expiresIn.endsWith('s')) {
@@ -13,5 +13,3 @@ const getExpiresInSec = (expiresIn: string) => {
     return expiresInSec * 3600;
   }
 };
-
-export default getExpiresInSec;

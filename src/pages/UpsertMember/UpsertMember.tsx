@@ -6,19 +6,21 @@ import {
   useOutletContext,
 } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
 
-import { UseBearerToken } from 'hooks';
+import {
+  addMemberRequest,
+  editMemberRequest,
+  getMemberRequest,
+} from 'services';
+import { useBearerToken } from 'hooks';
 import { DashboardTitle, DashboardInput } from 'components';
-import { MemberType } from 'Types';
-
-const API_URL = process.env.REACT_APP_API_URL;
+import { MemberType } from 'types';
 
 const UpsertMember = () => {
   const outletCtx: {
     updateMembers: () => void;
   } = useOutletContext();
-  const bearerToken = UseBearerToken();
+  const bearerToken = useBearerToken();
   const navigate = useNavigate();
   const { memberId } = useParams();
 
@@ -33,29 +35,16 @@ const UpsertMember = () => {
 
   const submitHandler = handleSubmit(async (data) => {
     try {
-      const headers = {
-        headers: {
-          Authorization: bearerToken,
-        },
-      };
-
       if (memberId) {
-        await axios.put(
-          `${API_URL}/edit-member`,
+        await editMemberRequest(
           {
             id: memberId,
             ...data,
           },
-          headers
+          bearerToken
         );
       } else {
-        await axios.post(
-          `${API_URL}/add-member`,
-          {
-            ...data,
-          },
-          headers
-        );
+        await addMemberRequest(data, bearerToken);
       }
       outletCtx.updateMembers();
       navigate('/dashboard/members');
@@ -67,7 +56,7 @@ const UpsertMember = () => {
   useEffect(() => {
     const getMember = async () => {
       try {
-        const response = await axios.post(`${API_URL}/get-member`, {
+        const response = await getMemberRequest({
           id: memberId,
         });
         const data: MemberType = response.data;
@@ -107,7 +96,7 @@ const UpsertMember = () => {
                 message: 'სახელი უნდა შედგებოდეს მინიმუმ 3 სიმბოლოსგან',
               },
               pattern: {
-                value: /^[ა-ჰ-1-9 -;:'",.?!/—„“]+$/,
+                value: /^[ა-ჰ ]+$/,
                 message: 'სახელი უნდა შედგებოდეს მხოლოდ ქართული ასოებისგან',
               },
             }),
@@ -128,7 +117,7 @@ const UpsertMember = () => {
                   message: 'ინსტრუმენტი უნდა შედგებოდეს მინიმუმ 2 სიმბოლოსგან',
                 },
                 pattern: {
-                  value: /^[ა-ჰ]+$/,
+                  value: /^[ა-ჰ ]+$/,
                   message:
                     'ინსტრუმენტი უნდა შედგებოდეს მხოლოდ ქართული ასოებისგან',
                 },
@@ -149,22 +138,26 @@ const UpsertMember = () => {
             error={errors?.orbitWidth?.message}
             defaultValue={member?.orbitWidth}
           />
-          <DashboardInput
-            type='text'
-            placeholder='ფერი'
-            id='color-input'
-            register={{
-              ...register('color', {
+          <div className='relative'>
+            <input
+              type='color'
+              className='p-1 w-44 h-14 font-bpg-arial text-center bg-transparent border border-primary-dark-blue rounded-md outline-none'
+              id='color-input'
+              {...register('color', {
                 required: 'ფერი სავალდებულოა',
                 pattern: {
                   value: /^#[A-Fa-f0-9]{6}/,
                   message: 'ფერი უნდა იყოს ვალიდური ჰექსკოდი',
                 },
-              }),
-            }}
-            error={errors?.color?.message}
-            defaultValue={member?.color}
-          />
+              })}
+              defaultValue={member?.color ? member?.color : '#000000'}
+            />
+            {errors?.color?.message && (
+              <p className='pl-5 absolute text-sm text-light-red'>
+                {errors.color.message}
+              </p>
+            )}
+          </div>
         </div>
         <div className='relative w-full'>
           <textarea
@@ -189,13 +182,13 @@ const UpsertMember = () => {
         <button
           type='submit'
           id='submit-btn'
-          className='mt-3 w-44 h-14 font-nino-mtavruli text-white bg-primary-dark-blue rounded-lg'
+          className='mt-6 w-44 h-14 font-nino-mtavruli text-white bg-primary-dark-blue rounded-lg'
         >
           {memberId ? 'შეცვალე წევრი' : 'დაამატე წევრი'}
         </button>
         <Link
           to='/dashboard/members'
-          className='pt-5 font-nino-mtavruli-bold text-lg text-light-blue underline'
+          className='pt-2 font-nino-mtavruli-bold text-lg text-light-blue underline'
         >
           გადი უკან
         </Link>

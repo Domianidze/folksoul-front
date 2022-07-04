@@ -1,3 +1,4 @@
+export { default as PageNotFound } from './PageNotFound';
 export { default as Landing } from './Landing';
 export { default as LogIn } from './LogIn';
 export { default as Dashboard } from './Dashboard';

@@ -1,9 +1,6 @@
-import axios from 'axios';
-
-import { UseBearerToken, UseFileUpload } from 'hooks';
+import { useBearerToken, useFileUpload } from 'hooks';
+import { changeSocialMediaIconRequest } from 'services';
 import { Modal, ModalTitle, ImageForm } from 'components';
-
-const API_URL = process.env.REACT_APP_API_URL;
 
 const SocialMediaImageModal: React.FC<{
   socialMediaId: string;
@@ -11,10 +8,10 @@ const SocialMediaImageModal: React.FC<{
   onClose: () => void;
   updateSocialMedias: () => void;
 }> = (props) => {
-  const bearerToken = UseBearerToken();
+  const bearerToken = useBearerToken();
 
   const { preview, image, inputRef, clickHandler, changeHandler } =
-    UseFileUpload();
+    useFileUpload();
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,11 +22,7 @@ const SocialMediaImageModal: React.FC<{
       body.append('socialMediaId', props.socialMediaId);
       body.append('image', image);
 
-      await axios.put(`${API_URL}/change-social-media-icon`, body, {
-        headers: {
-          Authorization: bearerToken,
-        },
-      });
+      await changeSocialMediaIconRequest(body, bearerToken);
 
       props.updateSocialMedias();
       props.onClose();
@@ -39,11 +32,13 @@ const SocialMediaImageModal: React.FC<{
   return (
     <Modal onClose={props.onClose}>
       <ModalTitle title='შეცვალე სოციალური ბმულის აიკონი' />
-      <img
-        src={preview ? preview : props.defaultImage}
-        alt='icon'
-        className='my-16 max-h-56'
-      />
+      <div className='my-16 relative w-56 h-56 flex justify-center items-center'>
+        <img
+          src={preview ? preview : props.defaultImage}
+          alt='icon'
+          className='max-h-56'
+        />
+      </div>
       <ImageForm
         preview={preview}
         inputRef={inputRef}

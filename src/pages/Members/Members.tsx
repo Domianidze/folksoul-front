@@ -1,21 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useOutlet, Link } from 'react-router-dom';
-import axios from 'axios';
 
-import { Member, PaginationButton } from './components';
+import { getMembersRequest } from 'services';
 import { DashboardTitle } from 'components';
-import { MemberType } from 'Types';
-
-const API_URL = process.env.REACT_APP_API_URL;
+import { Member, PaginationButton } from './components';
+import { MemberType } from 'types';
 
 const Members: React.FC = () => {
   const [members, setMembers] = useState<MemberType[]>([]);
   const [pages, setPages] = useState<number[]>([]);
   const [curPage, setCurPage] = useState<number>(0);
 
-  const updateMembers = async () => {
+  const updateMembers = useCallback(async () => {
     try {
-      const response = await axios.get(`${API_URL}/get-members`);
+      const response = await getMembersRequest();
       const data: MemberType[] = response.data;
 
       const numberOfPages = Math.ceil(data.length / 3);
@@ -27,11 +25,19 @@ const Members: React.FC = () => {
       setMembers(data);
       setPages(pages);
     } catch (err) {}
-  };
+  }, []);
 
   useEffect(() => {
     updateMembers();
-  }, []);
+  }, [updateMembers]);
+
+  useEffect(() => {
+    const lastPage = pages.length - 1;
+
+    if (curPage > lastPage && lastPage > -1) {
+      setCurPage(lastPage);
+    }
+  }, [curPage, pages]);
 
   const setCurPageHandler = (page: number) => {
     setCurPage(page);
@@ -46,18 +52,24 @@ const Members: React.FC = () => {
   const lastIndex = firstIndex + 3;
 
   return (
-    <div className='pb-20 relative w-full h-full flex items-center flex-col'>
+    <div className='pb-20 relative w-full h-full flex items-center flex-col overflow-hidden'>
       <DashboardTitle title='ჯგუფების წევრები' />
-      <div className='px-28 w-full flex justify-center'>
-        {members.slice(firstIndex, lastIndex).map((member) => {
-          return (
-            <Member
-              member={member}
-              updateMembers={updateMembers}
-              key={member._id}
-            />
-          );
-        })}
+      <div className='mt-3 w-full flex justify-center'>
+        {members.length > 0 ? (
+          members.slice(firstIndex, lastIndex).map((member) => {
+            return (
+              <Member
+                member={member}
+                updateMembers={updateMembers}
+                key={member._id}
+              />
+            );
+          })
+        ) : (
+          <p className='font-nino-mtavruli text-lg'>
+            ბენდის წევრები ჯერ–ჯერობით არ არიან.
+          </p>
+        )}
       </div>
       <div className='my-24'>
         {pages.map((i) => {

@@ -1,5 +1,6 @@
 import { RefObject, ChangeEventHandler } from 'react';
-import { ModalButton } from './';
+
+import { ModalButton } from 'components';
 
 const ImageForm: React.FC<{
   preview: string | null | undefined;

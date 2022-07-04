@@ -1,4 +1,4 @@
-import { getWelcomeText } from './util';
+import { getWelcomeText } from './helpers';
 import { TvImg } from 'assets';
 
 const Main: React.FC = () => {

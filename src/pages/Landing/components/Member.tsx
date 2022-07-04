@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useAnimation, useMotionValue, useSpring } from 'framer-motion';
 
-import { MemberType } from 'Types';
+import { MemberType } from 'types';
 
 const Member: React.FC<{
   member: MemberType;
@@ -11,7 +11,7 @@ const Member: React.FC<{
   index: number;
 }> = (props) => {
   const active = props.member._id === props.activeMember?._id;
-  const rotate = useMotionValue(0);
+  const rotate: any = useMotionValue(0);
   const scale = useSpring(1, { stiffness: 100 });
 
   const [memberRotate] = useState(Math.floor(Math.random() * 360));
@@ -29,12 +29,11 @@ const Member: React.FC<{
   const animateStatic = useAnimation();
 
   useEffect(() => {
-    // @ts-ignore
     setMemberMaxRotate(rotate.current + 360);
 
     const memberTransition = {
       ease: 'linear',
-      duration: 30 - props.index * 2,
+      duration: 20 + props.index * 2,
       repeat: Infinity,
     };
 

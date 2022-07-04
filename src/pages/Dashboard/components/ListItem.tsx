@@ -1,5 +1,6 @@
-import { useLocation } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
+import { useLocation, NavLink } from 'react-router-dom';
+
+import { getIsActive } from '../helpers';
 
 const ListItem: React.FC<{
   id: string;
@@ -9,8 +10,7 @@ const ListItem: React.FC<{
   end?: boolean;
 }> = (props) => {
   const pathname = useLocation().pathname;
-  const isActive =
-    props.to === pathname.replace('dashboard', '').replaceAll('/', '');
+  const isActive = getIsActive(props.to, pathname);
 
   return (
     <li

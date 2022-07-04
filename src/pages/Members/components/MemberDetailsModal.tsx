@@ -1,5 +1,5 @@
 import { Modal, ModalTitle } from 'components';
-import { MemberType } from 'Types';
+import { MemberType } from 'types';
 
 const MemberImageModal: React.FC<{
   member: MemberType;
@@ -12,7 +12,7 @@ const MemberImageModal: React.FC<{
       <ModalTitle title={`${member.name} - ${member.instrument}`} />
       <div className='flex items-center flex-col w-full overflow-y-auto'>
         <div
-          className='my-6 relative w-32 h-32 flex justify-center items-center shrink-0 border border-white rounded-full shadow-primary '
+          className='my-6 relative w-32 h-32 flex justify-center items-center shrink-0 border border-white rounded-full shadow-primary overflow-hidden'
           style={{ backgroundColor: member.color }}
         >
           <img src={member.avatarUrl} alt='avatar' className='max-h-28' />

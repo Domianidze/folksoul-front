@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 
 import { ChangeEventHandler } from 'react';
 
-const UseFileUpload = () => {
+const useFileUpload = () => {
   const [image, setImage] = useState<File | null>();
   const [preview, setPreview] = useState<string | null>();
   const inputRef = useRef<HTMLInputElement>(null);
@@ -44,4 +44,4 @@ const UseFileUpload = () => {
   };
 };
 
-export default UseFileUpload;
+export default useFileUpload;

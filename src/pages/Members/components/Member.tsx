@@ -1,21 +1,19 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
-import { UseBearerToken } from 'hooks';
+import { useBearerToken } from 'hooks';
+import { deleteMemberRequest } from 'services';
 import { MemberDetailsModal, MemberImageModal } from './';
-import { DashboardButton } from 'components';
+import { DashboardButton, ImageWrapper } from 'components';
 import { EditPhotoIcon } from 'assets';
-import { MemberType } from 'Types';
-
-const API_URL = process.env.REACT_APP_API_URL;
+import { MemberType } from 'types';
 
 const Member: React.FC<{
   member: MemberType;
   updateMembers: () => void;
 }> = (props) => {
   const { member } = props;
-  const bearerToken = UseBearerToken();
+  const bearerToken = useBearerToken();
 
   const [deletePanelOpen, setDeletePanelOpen] = useState<boolean>();
   const [detailsModalOpen, setDetailsModalOpen] = useState<boolean>();
@@ -32,20 +30,18 @@ const Member: React.FC<{
 
   const deleteMemberHandler = async () => {
     try {
-      await axios.delete(`${API_URL}/delete-member`, {
-        headers: {
-          Authorization: bearerToken,
-        },
-        data: {
+      await deleteMemberRequest(
+        {
           id: member._id,
         },
-      });
+        bearerToken
+      );
       props.updateMembers();
     } catch (err) {}
   };
 
   return (
-    <div className='relative mx-4 w-56 h-72 bg-custom-black border border-black rounded-sm shadow-primary 2xl:mx-14'>
+    <div className='relative mx-4 w-56 h-72 bg-custom-black border border-black rounded-md shadow-primary 2xl:mx-14'>
       {detailsModalOpen && (
         <MemberDetailsModal
           member={member}
@@ -89,7 +85,9 @@ const Member: React.FC<{
           className='relative w-36 h-36 flex justify-center items-center border border-white rounded-full'
           style={{ backgroundColor: member.color }}
         >
-          <img src={member.avatarUrl} alt='avatar' />
+          <ImageWrapper>
+            <img src={member.avatarUrl} alt='avatar' />
+          </ImageWrapper>
           <button type='button' onClick={openImageModalHandler}>
             <img
               src={EditPhotoIcon}

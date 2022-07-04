@@ -98,14 +98,13 @@ npm run build
 │   ├───├───├─── components # [OPTIONAL] reusable components
 │   ├───├───├───├─── component-name.tsx # component
 │   ├───├───├───├─── index.ts # export all components
-│   ├───├───├─── util # [OPTIONAL] utility functions
-│   ├───├───├───├─── util-function.ts # utility function
-│   ├───├───├───├─── index.ts # export utility functions
 │   ├───├───├─── page-name.tsx # page component
+│   ├───├───├─── helpers.ts # [OPTIONAL] helper  functions
 │   ├───├───├─── index.ts # export default page
 │   ├───├─── index.ts # export all pages
 │   ├─── state # state managment files 
 │   ├───├─── state-name.tscx # component
+│   ├───├─── helpers.ts # helper functions
 │   ├───├─── index.ts # export all states
 │   ├─── App.tsx # react app 
 │   ├─── index.css # global styles 

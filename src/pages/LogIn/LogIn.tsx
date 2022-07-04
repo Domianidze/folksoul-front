@@ -1,13 +1,11 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
 
-import { Input } from './components';
+import { loginRequest } from 'services';
 import { AuthContext } from 'state';
-import { getExpiresInSec } from './util';
-
-const API_URL = process.env.REACT_APP_API_URL;
+import { Input } from './components';
+import { getExpiresInSec } from './helpers';
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
@@ -24,8 +22,8 @@ const Login: React.FC = () => {
 
   const loginHandler = handleSubmit(async (data) => {
     try {
-      const response = await axios.post(`${API_URL}/login`, data);
-      const token: string = response.data.token;
+      const response = await loginRequest(data);
+      const token = response.data.token;
       const expiresIn = getExpiresInSec(response.data.expiresIn);
 
       authCtx.onLogIn(token, expiresIn);

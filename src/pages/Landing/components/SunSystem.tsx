@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useAnimation } from 'framer-motion';
 
+import { Member } from '.';
 import { SunoteImg } from 'assets';
-import { Member } from './';
-import { MemberType } from 'Types';
+import { MemberType } from 'types';
 
-const SunoteSystem: React.FC<{
+const SunSystem: React.FC<{
   members: MemberType[];
   activeMember: MemberType | undefined;
   stopAnimating: boolean;
@@ -15,9 +15,9 @@ const SunoteSystem: React.FC<{
 
   useEffect(() => {
     animatePulsating.start({
-      opacity: [1, 0.6, 1],
+      opacity: [1, 0.5, 1],
       transition: {
-        duration: 2.6,
+        duration: 1.5,
         repeat: Infinity,
       },
     });
@@ -29,18 +29,17 @@ const SunoteSystem: React.FC<{
 
   return (
     <div className='relative flex justify-center items-center'>
-      {props.members.length > 0 &&
-        props.members.map((item, index) => {
-          return (
-            <Member
-              member={item}
-              activeMember={props.activeMember}
-              stopAnimating={props.stopAnimating}
-              index={index}
-              key={index}
-            />
-          );
-        })}
+      {props.members.map((item, index) => {
+        return (
+          <Member
+            member={item}
+            activeMember={props.activeMember}
+            stopAnimating={props.stopAnimating}
+            index={index}
+            key={index}
+          />
+        );
+      })}
       <Link to='/'>
         <motion.div
           animate={animatePulsating}
@@ -53,4 +52,4 @@ const SunoteSystem: React.FC<{
   );
 };
 
-export default SunoteSystem;
+export default SunSystem;

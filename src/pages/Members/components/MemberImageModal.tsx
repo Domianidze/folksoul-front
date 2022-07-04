@@ -1,9 +1,6 @@
-import axios from 'axios';
-
-import { UseBearerToken, UseFileUpload } from 'hooks';
-import { Modal, ModalTitle, ImageForm } from 'components';
-
-const API_URL = process.env.REACT_APP_API_URL;
+import { changeMemberAvatarRequest } from 'services';
+import { useBearerToken, useFileUpload } from 'hooks';
+import { Modal, ModalTitle, ImageWrapper, ImageForm } from 'components';
 
 const MemberImageModal: React.FC<{
   memberId: string;
@@ -12,10 +9,10 @@ const MemberImageModal: React.FC<{
   onClose: () => void;
   updateMembers: () => void;
 }> = (props) => {
-  const bearerToken = UseBearerToken();
+  const bearerToken = useBearerToken();
 
   const { preview, image, inputRef, clickHandler, changeHandler } =
-    UseFileUpload();
+    useFileUpload();
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,11 +23,7 @@ const MemberImageModal: React.FC<{
       body.append('memberId', props.memberId);
       body.append('image', image);
 
-      await axios.put(`${API_URL}/change-member-avatar`, body, {
-        headers: {
-          Authorization: bearerToken,
-        },
-      });
+      await changeMemberAvatarRequest(body, bearerToken);
 
       props.updateMembers();
       props.onClose();
@@ -44,11 +37,9 @@ const MemberImageModal: React.FC<{
         className='my-16 relative w-56 h-56 flex justify-center items-center border border-white rounded-full shadow-primary'
         style={{ backgroundColor: props.bgColor }}
       >
-        <img
-          src={preview ? preview : props.defaultImage}
-          alt='avatar'
-          className='max-h-52'
-        />
+        <ImageWrapper>
+          <img src={preview ? preview : props.defaultImage} alt='avatar' />
+        </ImageWrapper>
       </div>
       <ImageForm
         preview={preview}

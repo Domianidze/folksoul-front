@@ -1,19 +1,16 @@
-import axios from 'axios';
-
-import { UseBearerToken, UseFileUpload } from 'hooks';
-import { Modal, ModalTitle, ImageForm } from 'components';
-
-const API_URL = process.env.REACT_APP_API_URL;
+import { useBearerToken, useFileUpload } from 'hooks';
+import { setBandLogoRequest } from 'services';
+import { Modal, ModalTitle, ImageWrapper, ImageForm } from 'components';
 
 const BandImageModal: React.FC<{
   defaultImage: string | undefined;
   onClose: () => void;
   updateBand: () => void;
 }> = (props) => {
-  const bearerToken = UseBearerToken();
+  const bearerToken = useBearerToken();
 
   const { preview, image, inputRef, clickHandler, changeHandler } =
-    UseFileUpload();
+    useFileUpload();
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -23,11 +20,7 @@ const BandImageModal: React.FC<{
       const body = new FormData();
       body.append('image', image);
 
-      await axios.put(`${API_URL}/set-band-logo`, body, {
-        headers: {
-          Authorization: bearerToken,
-        },
-      });
+      await setBandLogoRequest(body, bearerToken);
 
       props.updateBand();
       props.onClose();
@@ -38,11 +31,9 @@ const BandImageModal: React.FC<{
     <Modal onClose={props.onClose}>
       <ModalTitle title='შეცვალე ბენდის ლოგო' />
       <div className='my-16 relative w-56 h-56 flex justify-center items-center bg-primary-dark-blue border border-white rounded-full shadow-primary'>
-        <img
-          src={preview ? preview : props.defaultImage}
-          alt='avatar'
-          className='max-h-52'
-        />
+        <ImageWrapper>
+          <img src={preview ? preview : props.defaultImage} alt='avatar' />
+        </ImageWrapper>
       </div>
       <ImageForm
         preview={preview}

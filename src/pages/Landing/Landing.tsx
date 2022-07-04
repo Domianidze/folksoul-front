@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import { useParams, useNavigate } from 'react-router-dom';
 
-import { Header, SunoteSystem, Description, SocialMedias } from './components';
-import { MemberType } from 'Types';
-
-const API_URL = process.env.REACT_APP_API_URL;
+import { getMembersRequest } from 'services';
+import { Header, SunSystem, Description, SocialMedias } from './components';
+import { MemberType } from 'types';
 
 const Landing: React.FC = () => {
   const params = useParams();
+  const navigate = useNavigate();
 
   const [members, setMembers] = useState<MemberType[]>([]);
   const [activeMember, setActiveMember] = useState<MemberType | undefined>();
@@ -17,12 +16,16 @@ const Landing: React.FC = () => {
   useEffect(() => {
     const getMembers = async () => {
       try {
-        const response = await axios.get(`${API_URL}/get-members`);
+        const response = await getMembersRequest();
         const data: MemberType[] = response.data;
 
         const active: MemberType | undefined = data.find(
           (member) => member._id === params.memberId
         );
+
+        if (!active && params.memberId) {
+          navigate('/404/page-not-found');
+        }
 
         if (active) {
           setStopAnimating(true);
@@ -36,14 +39,14 @@ const Landing: React.FC = () => {
     };
 
     getMembers();
-  }, [params]);
+  }, [params, navigate]);
 
   return (
     <div className='w-100 h-screen max-h-screen bg-primary overflow-hidden'>
       <Header />
       <div className='pt-20 w-full h-full flex'>
         <div className='h-full w-1/2 flex justify-center items-center'>
-          <SunoteSystem
+          <SunSystem
             members={members}
             activeMember={activeMember}
             stopAnimating={stopAnimating}

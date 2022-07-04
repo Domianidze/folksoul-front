@@ -1,4 +1,4 @@
-const getWelcomeText = () => {
+export const getWelcomeText = () => {
   var curHour = new Date().getHours();
 
   if (curHour < 12) {
@@ -9,5 +9,3 @@ const getWelcomeText = () => {
     return 'საღამომშვიდობის!';
   }
 };
-
-export default getWelcomeText;

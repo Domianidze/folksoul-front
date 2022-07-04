@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import { AuthContext } from 'state';
 import {
+  PageNotFound,
   Landing,
   LogIn,
   Dashboard,
@@ -35,7 +36,7 @@ const App: React.FC = () => {
           <Route index element={<Main />} />
         </Route>
       )}
-      <Route path='*' element={<Landing />} />
+      <Route path='*' element={<PageNotFound />} />
       <Route index element={<Landing />} />
     </Routes>
   );

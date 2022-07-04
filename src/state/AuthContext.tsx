@@ -1,12 +1,14 @@
 import React, { useState, PropsWithChildren } from 'react';
 
+import { getExpirationTime, getStoredToken } from './helpers';
+
 const AuthContext = React.createContext<{
-  token: string;
+  token: string | undefined;
   isLoggedIn: boolean;
   onLogIn: (token: string, expiresIn: number | undefined) => void;
   onLogOut: () => void;
 }>({
-  token: '',
+  token: undefined,
   isLoggedIn: false,
   onLogIn: (token: string, expiresIn: number | undefined) => {},
   onLogOut: () => {},
@@ -15,25 +17,47 @@ const AuthContext = React.createContext<{
 export const AuthContextProvider: React.FC<PropsWithChildren<unknown>> = (
   props
 ) => {
-  const [token, setToken] = useState('');
-  const isLoggedIn = !!token;
+  const [tokenData, setTokenData] = useState<
+    | {
+        token: string;
+        remainingTime: number | undefined;
+      }
+    | undefined
+  >(getStoredToken());
+  const isLoggedIn = !!tokenData?.token;
+
+  let logOutTimer: ReturnType<typeof setTimeout>;
 
   const logOutHandler = () => {
-    setToken('');
+    setTokenData(undefined);
+    localStorage.removeItem('token');
+
+    if (logOutTimer) {
+      clearTimeout(logOutTimer);
+    }
   };
 
   const logInHandler = (token: string, expiresIn: number | undefined) => {
-    setToken(token);
+    setTokenData({
+      token: token,
+      remainingTime: expiresIn && expiresIn * 1000,
+    });
+    localStorage.setItem('token', token);
 
     if (expiresIn) {
-      setTimeout(logOutHandler, expiresIn * 1000);
+      localStorage.setItem('expirationTime', getExpirationTime(expiresIn));
+      logOutTimer = setTimeout(logOutHandler, expiresIn * 1000);
     }
   };
+
+  if (tokenData?.remainingTime) {
+    logOutTimer = setTimeout(logOutHandler, tokenData.remainingTime);
+  }
 
   return (
     <AuthContext.Provider
       value={{
-        token: token,
+        token: tokenData?.token,
         isLoggedIn: isLoggedIn,
         onLogIn: logInHandler,
         onLogOut: logOutHandler,

@@ -6,24 +6,24 @@ describe('expires in', () => {
   it('user should get be logged out after 300 seconds', () => {
     cy.intercept('POST', `${Cypress.env('API_URL')}/login`, {
       statusCode: 200,
-      fixture: 'login-300s.json',
-    }).as('login300s');
+      fixture: 'login-expires-in-300s.json',
+    }).as('loginExpiresIn300s');
     cy.logIn();
   });
 
   it('user should get be logged out after 30 minutes', () => {
     cy.intercept('POST', `${Cypress.env('API_URL')}/login`, {
       statusCode: 200,
-      fixture: 'login-30m.json',
-    }).as('login30m');
+      fixture: 'login-expires-in-30m.json',
+    }).as('loginExpiresIn30m');
     cy.logIn();
   });
 
   it('user should get be logged out after 3 hours', () => {
     cy.intercept('POST', `${Cypress.env('API_URL')}/login`, {
       statusCode: 200,
-      fixture: 'login-3h.json',
-    }).as('login3h');
+      fixture: 'login-expires-in-3h.json',
+    }).as('loginExpiresIn3h');
     cy.logIn();
   });
 });

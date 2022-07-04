@@ -23,7 +23,6 @@ describe('members page', () => {
     cy.get('#name-input').type('გელა');
     cy.get('#instrument-input').type('გიტარა');
     cy.get('#orbit-width-input').type('32');
-    cy.get('#color-input').type('#EB5757');
     cy.get('#biography-textarea').type('გიტარისტი გელა');
     cy.get('#submit-btn').click();
     cy.wait(500);
@@ -69,8 +68,14 @@ describe('members page', () => {
       statusCode: 200,
       fixture: 'delete-member-successful.json',
     }).as('deleteMemberSuccessful');
+    cy.intercept('GET', `${Cypress.env('API_URL')}/get-members`, {
+      statusCode: 200,
+      fixture: 'deleted-members-successful.json',
+    }).as('deletedMembersSuccessful');
+    cy.get('#გელა-remove-btn').click();
+    cy.get('#გელა-remove-no-btn').click();
     cy.get('#გელა-remove-btn').click();
     cy.get('#გელა-remove-yes-btn').click();
-    cy.get('#გელა-remove-no-btn').click();
+    cy.wait(500);
   });
 });

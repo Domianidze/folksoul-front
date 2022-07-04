@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 
-import { DashboardTitle } from 'components';
+import { getBandDataRequest } from 'services';
+import { DashboardTitle, ImageWrapper } from 'components';
 import { BandImageModal, EditTextPanel } from './components';
 import { EditPhotoBigIcon, EditTextIcon } from 'assets';
-import { BandType } from 'Types';
-
-const API_URL = process.env.REACT_APP_API_URL;
+import { BandType } from 'types';
 
 const Band: React.FC = () => {
   const [band, setBand] = useState<BandType>();
@@ -21,7 +19,7 @@ const Band: React.FC = () => {
 
   const updateBand = async () => {
     try {
-      const response = await axios.get(`${API_URL}/get-band-data`);
+      const response = await getBandDataRequest();
       const data: BandType = response.data;
 
       setBand(data);
@@ -52,9 +50,11 @@ const Band: React.FC = () => {
         />
       ) : (
         <>
-          <div className='mb-8 mx-16 px-12 overflow-y-auto flex items-center flex-col 3xl-mb-20 3xl:mx-0'>
-            <div className='relative w-48 h-48 flex justify-center items-center bg-primary-dark-blue border border-white rounded-full shadow-primary shrink-0'>
-              <img src={band?.logoUrl} alt={`band`} className='max-h-44' />
+          <div className='mb-8 mx-16 pl-16 pr-12 overflow-y-auto flex items-center flex-col 3xl-mb-20 3xl:mx-0'>
+            <div className='mt-3 relative w-48 h-48 flex justify-center items-center bg-primary-dark-blue border border-white rounded-full shadow-primary shrink-0'>
+              <ImageWrapper>
+                <img src={band?.logoUrl} alt='band' />
+              </ImageWrapper>
               <button type='button' onClick={openImageModalHandler}>
                 <img
                   src={EditPhotoBigIcon}

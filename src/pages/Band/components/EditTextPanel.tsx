@@ -1,17 +1,15 @@
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
 
-import { UseBearerToken } from 'hooks';
+import { useBearerToken } from 'hooks';
+import { setBandInformationRequest } from 'services';
 import { ModalButton } from 'components';
-
-const API_URL = process.env.REACT_APP_API_URL;
 
 const EditTextPanel: React.FC<{
   defaultInformation: string | undefined;
   onClose: () => void;
   updateBand: () => void;
 }> = (props) => {
-  const bearerToken = UseBearerToken();
+  const bearerToken = useBearerToken();
 
   const {
     register,
@@ -23,17 +21,7 @@ const EditTextPanel: React.FC<{
 
   const submitHandler = handleSubmit(async (data) => {
     try {
-      await axios.put(
-        `${API_URL}/set-band-information`,
-        {
-          information: data.information,
-        },
-        {
-          headers: {
-            Authorization: bearerToken,
-          },
-        }
-      );
+      await setBandInformationRequest(data, bearerToken);
 
       props.updateBand();
       props.onClose();
@@ -54,7 +42,7 @@ const EditTextPanel: React.FC<{
               {...register('information', {
                 required: 'ინფორმაცია სავალდებულოა',
                 pattern: {
-                  value: /^[ა-ჰ-1-9 -;:'",.?!/—„“]+$/,
+                  value: /^[ა-ჰ-1-9 -;:'",.?!/–—„“]+$/,
                   message:
                     'ინფორმაცია უნდა შედგებოდეს მხოლოდ ქართული ასოებისგან',
                 },
