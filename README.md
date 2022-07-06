@@ -1,8 +1,8 @@
 ![Logo](./readme/assets/img/logo.png)
 
-## Inside Joke
+## Folksoul
  
-A website made for a musical band Inside Joke. You can visit the production version [here!](https://inside-joke.sandro.redberryinternship.ge/)
+A website made for a musical band Folksoul. You can visit the production version [here!](https://folksoul.sandro.redberryinternship.ge/)
 
 ### Table of Contents
 
@@ -32,7 +32,7 @@ A website made for a musical band Inside Joke. You can visit the production vers
 
 1\. First of all clone the repository from github:
 ```sh
-git clone https://github.com/RedberryInternship/inside-joke-front-Domianidze.git
+git clone https://github.com/RedberryInternship/folksoul-front-Domianidze.git
 ```
 2\. Secondly install all the dependencies:
 ```sh
@@ -50,7 +50,7 @@ npm start
 ```
 
 ### Testing
-Inside Joke uses ``` @cypress ```  for testing.
+Folksoul uses ``` @cypress ```  for testing.
 
 you can run and view tests in the Cypress GUI. You can open the Cypress GUI  using the following commands:
 
@@ -124,5 +124,5 @@ npm run build
 
 ### Resources
 
-*  [Project Details](https://redberry.gitbook.io/assignment-iii-inside-joke/)
+*  [Project Details](https://redberry.gitbook.io/assignment-iii-folksoul/)
 *  [Git Commit Rules](https://redberry.gitbook.io/resources/git-is-semantikuri-komitebi)
