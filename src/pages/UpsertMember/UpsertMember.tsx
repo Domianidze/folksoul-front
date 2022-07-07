@@ -28,6 +28,7 @@ const UpsertMember = () => {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
     reset,
   } = useForm({
     mode: 'onTouched',
@@ -48,7 +49,37 @@ const UpsertMember = () => {
       }
       outletCtx.updateMembers();
       navigate('/dashboard/members');
-    } catch (err) {}
+    } catch (err: any) {
+      const error: string = err?.response?.data?.message;
+
+      if (error.includes('name')) {
+        return setError('name', {
+          type: 'custom',
+          message: error,
+        });
+      }
+
+      if (error.includes('instrument')) {
+        return setError('instrument', {
+          type: 'custom',
+          message: error,
+        });
+      }
+
+      if (error.includes('color')) {
+        return setError('color', {
+          type: 'custom',
+          message: error,
+        });
+      }
+
+      if (error) {
+        return setError('biography', {
+          type: 'custom',
+          message: error,
+        });
+      }
+    }
   });
 
   const [member, setMember] = useState<MemberType | undefined>();

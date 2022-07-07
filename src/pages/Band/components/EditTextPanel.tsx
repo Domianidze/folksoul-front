@@ -15,6 +15,7 @@ const EditTextPanel: React.FC<{
     register,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm({
     mode: 'onTouched',
   });
@@ -25,7 +26,16 @@ const EditTextPanel: React.FC<{
 
       props.updateBand();
       props.onClose();
-    } catch (err) {}
+    } catch (err: any) {
+      const error: string = err?.response?.data?.message;
+
+      if (error) {
+        return setError('information', {
+          type: 'custom',
+          message: error,
+        });
+      }
+    }
   });
 
   return (

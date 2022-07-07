@@ -28,6 +28,7 @@ const UpsertSocialMedia = () => {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
     reset,
   } = useForm({
     mode: 'onTouched',
@@ -48,7 +49,23 @@ const UpsertSocialMedia = () => {
       }
       outletCtx.updateSocialMedias();
       navigate('/dashboard/social-medias');
-    } catch (err) {}
+    } catch (err: any) {
+      const error: string = err?.response?.data?.message;
+
+      if (error.includes('name')) {
+        return setError('name', {
+          type: 'custom',
+          message: error,
+        });
+      }
+
+      if (error) {
+        return setError('link', {
+          type: 'custom',
+          message: error,
+        });
+      }
+    }
   });
 
   const [socialMedia, setSocialMedia] = useState<SocialMediaType | undefined>();
