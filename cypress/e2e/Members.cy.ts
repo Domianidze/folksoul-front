@@ -14,6 +14,49 @@ describe('members page', () => {
     cy.get('#pagination-btn-1').click();
   });
 
+  it('user should get error messages from server if needed', () => {
+    cy.get('#add-member-btn').click();
+    cy.get('#name-input').type('გელა');
+    cy.get('#instrument-input').type('გიტარა');
+    cy.get('#orbit-width-input').type('32');
+    cy.get('#biography-textarea').type('გიტარისტი გელა');
+
+    cy.intercept('POST', `${Cypress.env('API_URL')}/add-member`, {
+      statusCode: 422,
+      fixture: 'add-member-invalid-name.json',
+    }).as('invalidName');
+    cy.get('#submit-btn').click();
+    cy.contains('invalid name').should('be.visible');
+
+    cy.intercept('POST', `${Cypress.env('API_URL')}/add-member`, {
+      statusCode: 422,
+      fixture: 'add-member-invalid-instrument.json',
+    }).as('invalidInstrument');
+    cy.get('#submit-btn').click();
+    cy.contains('invalid instrument').should('be.visible');
+
+    cy.intercept('POST', `${Cypress.env('API_URL')}/add-member`, {
+      statusCode: 422,
+      fixture: 'add-member-invalid-orbit-width.json',
+    }).as('invalidOrbitWidth');
+    cy.get('#submit-btn').click();
+    cy.contains('invalid orbitWidth').should('be.visible');
+
+    cy.intercept('POST', `${Cypress.env('API_URL')}/add-member`, {
+      statusCode: 422,
+      fixture: 'add-member-invalid-color.json',
+    }).as('invalidColor');
+    cy.get('#submit-btn').click();
+    cy.contains('invalid color').should('be.visible');
+
+    cy.intercept('POST', `${Cypress.env('API_URL')}/add-member`, {
+      statusCode: 422,
+      fixture: 'add-member-invalid-biography.json',
+    }).as('invalidBiography');
+    cy.get('#submit-btn').click();
+    cy.contains('invalid biography').should('be.visible');
+  });
+
   it('user should be able to add a member', () => {
     cy.intercept('POST', `${Cypress.env('API_URL')}/add-member`, {
       statusCode: 200,

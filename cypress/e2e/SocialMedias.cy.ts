@@ -13,6 +13,26 @@ describe('social media page', () => {
     cy.get('#nav-social-medias').click();
   });
 
+  it('user should get error messages from server if needed', () => {
+    cy.get('#add-social-media-btn').click();
+    cy.get('#name-input').type('Twitter');
+    cy.get('#link-input').type('https://twitter.com');
+
+    cy.intercept('POST', `${Cypress.env('API_URL')}/add-social-media`, {
+      statusCode: 422,
+      fixture: 'add-social-media-invalid-name.json',
+    }).as('invalidName');
+    cy.get('#submit-btn').click();
+    cy.contains('invalid name').should('be.visible');
+
+    cy.intercept('POST', `${Cypress.env('API_URL')}/add-social-media`, {
+      statusCode: 422,
+      fixture: 'add-social-media-invalid-link.json',
+    }).as('invalidLink');
+    cy.get('#submit-btn').click();
+    cy.contains('invalid link').should('be.visible');
+  });
+
   it('user should be able to add a social media', () => {
     cy.intercept('POST', `${Cypress.env('API_URL')}/add-social-media`, {
       statusCode: 200,

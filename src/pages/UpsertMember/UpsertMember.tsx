@@ -66,6 +66,13 @@ const UpsertMember = () => {
         });
       }
 
+      if (error.includes('orbitWidth')) {
+        return setError('orbitWidth', {
+          type: 'custom',
+          message: error,
+        });
+      }
+
       if (error.includes('color')) {
         return setError('color', {
           type: 'custom',

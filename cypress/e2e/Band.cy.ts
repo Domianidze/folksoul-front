@@ -13,6 +13,26 @@ describe('band page', () => {
     cy.get('#nav-band').click();
   });
 
+  it('user should get error messages from server if needed', () => {
+    cy.intercept('PUT', `${Cypress.env('API_URL')}/set-band-information`, {
+      statusCode: 422,
+      fixture: 'set-information-invalid.json',
+    }).as('invalidInformation');
+    cy.get('#set-information-btn').click();
+    cy.get('#submit-btn').click();
+    cy.contains('invalid information').should('be.visible');
+  });
+
+  it('user should be able to set band information', () => {
+    cy.intercept('PUT', `${Cypress.env('API_URL')}/set-band-information`, {
+      statusCode: 201,
+      fixture: 'set-information-successful.json',
+    }).as('setInformationSuccessful');
+    cy.get('#set-information-btn').click();
+    cy.get('#submit-btn').click();
+    cy.wait(500);
+  });
+
   it('user should be able to set band logo', () => {
     cy.intercept('PUT', `${Cypress.env('API_URL')}/set-band-logo`, {
       statusCode: 201,
@@ -26,15 +46,5 @@ describe('band page', () => {
     });
     cy.wait(500);
     cy.get('#submit-btn').click();
-  });
-
-  it('user should be able to set band information', () => {
-    cy.intercept('PUT', `${Cypress.env('API_URL')}/set-band-information`, {
-      statusCode: 201,
-      fixture: 'set-information-successful.json',
-    }).as('setInformationSuccessful');
-    cy.get('#set-information-btn').click();
-    cy.get('#submit-btn').click();
-    cy.wait(500);
   });
 });
