@@ -76,7 +76,7 @@ const Member: React.FC<{
       className='absolute pointer-events-none'
       style={{ rotate }}
     >
-      <Link to={`/${props.member._id}`}>
+      <Link to={`?member=${props.member._id}`}>
         <motion.div
           animate={animateStatic}
           initial={initialStatic}

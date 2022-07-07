@@ -1,16 +1,8 @@
 import axios from './axios';
 import { AxiosResponse } from 'axios';
 
-import {
-  HookFormSubmitData,
-  MessageResponse,
-  LoginResponse,
-  GetMembersResponse,
-  GetMemberResponse,
-  GetSocialMediasResponse,
-  GetSocialMediaResponse,
-  GetBandDataResponse,
-} from './types';
+import { MemberType, SocialMediaType, BandType } from 'types';
+import { HookFormSubmitData, MessageResponse, LoginResponse } from './types';
 
 export const loginRequest = (
   body: HookFormSubmitData
@@ -19,14 +11,14 @@ export const loginRequest = (
 };
 
 export const getMembersRequest = (): Promise<
-  AxiosResponse<GetMembersResponse, any>
+  AxiosResponse<MemberType[], any>
 > => {
   return axios.get('/get-members');
 };
 
 export const getMemberRequest = (data: {
   id: string | undefined;
-}): Promise<AxiosResponse<GetMemberResponse, any>> => {
+}): Promise<AxiosResponse<MemberType, any>> => {
   return axios.post('/get-member', data);
 };
 
@@ -78,14 +70,14 @@ export const changeMemberAvatarRequest = (
 };
 
 export const getSocialMediasRequest = (): Promise<
-  AxiosResponse<GetSocialMediasResponse, any>
+  AxiosResponse<SocialMediaType[], any>
 > => {
   return axios.get('/get-social-medias');
 };
 
 export const getSocialMediaRequest = (data: {
   id: string | undefined;
-}): Promise<AxiosResponse<GetSocialMediaResponse, any>> => {
+}): Promise<AxiosResponse<SocialMediaType, any>> => {
   return axios.post('/get-social-media', data);
 };
 
@@ -136,9 +128,7 @@ export const changeSocialMediaIconRequest = (
   });
 };
 
-export const getBandDataRequest = (): Promise<
-  AxiosResponse<GetBandDataResponse, any>
-> => {
+export const getBandDataRequest = (): Promise<AxiosResponse<BandType, any>> => {
   return axios.get('/get-band-data');
 };
 

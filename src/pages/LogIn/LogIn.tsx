@@ -31,21 +31,15 @@ const Login: React.FC = () => {
     } catch (err: any) {
       const error = err?.response?.data?.message;
 
-      if (!error) {
-        return;
-      }
-
-      if (error.includes('username')) {
+      if (error) {
         setError('username', {
           type: 'custom',
-          message: 'მომხმარებელი ამ მეტსახელით ვერ მოიძებნა',
+          message: ' ',
         });
-      }
 
-      if (error.includes('password')) {
         setError('password', {
           type: 'custom',
-          message: 'პაროლი არასწორია',
+          message: 'მეტსახელი ან პაროლი არასწორია',
         });
       }
     }

@@ -15,22 +15,13 @@ describe('login page', () => {
     cy.visit('/login');
   });
 
-  it('user should get errors if no user', () => {
+  it('user should get errors if no user or wrong password', () => {
     cy.intercept('POST', `${Cypress.env('API_URL')}/login`, {
       statusCode: 404,
       fixture: 'login-no-user.json',
     }).as('loginNoUser');
     cy.logIn();
-    cy.contains('მომხმარებელი ამ მეტსახელით ვერ მოიძებნა').should('be.visible');
-  });
-
-  it('user should get errors if wrong password', () => {
-    cy.intercept('POST', `${Cypress.env('API_URL')}/login`, {
-      statusCode: 401,
-      fixture: 'login-wrong-password.json',
-    }).as('loginWrongPassword');
-    cy.logIn();
-    cy.contains('პაროლი არასწორია').should('be.visible');
+    cy.contains('მეტსახელი ან პაროლი არასწორია').should('be.visible');
   });
 
   it('user should not get error if its not validation error', () => {

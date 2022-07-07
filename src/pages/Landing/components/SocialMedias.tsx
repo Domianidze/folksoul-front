@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { getSocialMediasRequest } from 'services';
 import { SocialMediaType } from 'types';
 
-const SocialMedias: React.FC = (props) => {
+const SocialMedias: React.FC = () => {
   const [socialMedias, setSocialMedias] = useState<SocialMediaType[]>([]);
 
   useEffect(() => {

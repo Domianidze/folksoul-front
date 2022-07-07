@@ -21,7 +21,6 @@ const App: React.FC = () => {
   return (
     <Routes>
       <Route path='/login' element={<LogIn />} />
-      <Route path='/:memberId' element={<Landing />} />
       {authCtx.isLoggedIn && (
         <Route path='/dashboard' element={<Dashboard />}>
           <Route path='members' element={<Members />}>

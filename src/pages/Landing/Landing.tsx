@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { getMembersRequest } from 'services';
 import { Header, SunSystem, Description, SocialMedias } from './components';
 import { MemberType } from 'types';
 
 const Landing: React.FC = () => {
-  const params = useParams();
+  const location = useLocation();
   const navigate = useNavigate();
 
   const [members, setMembers] = useState<MemberType[]>([]);
@@ -16,16 +16,14 @@ const Landing: React.FC = () => {
   useEffect(() => {
     const getMembers = async () => {
       try {
+        const [, memberId] = location.search.split('=');
+
         const response = await getMembersRequest();
         const data: MemberType[] = response.data;
 
         const active: MemberType | undefined = data.find(
-          (member) => member._id === params.memberId
+          (member) => member._id === memberId
         );
-
-        if (!active && params.memberId) {
-          navigate('/404/page-not-found');
-        }
 
         if (active) {
           setStopAnimating(true);
@@ -39,7 +37,7 @@ const Landing: React.FC = () => {
     };
 
     getMembers();
-  }, [params, navigate]);
+  }, [location, navigate]);
 
   return (
     <div className='w-100 h-screen max-h-screen bg-primary overflow-hidden'>
