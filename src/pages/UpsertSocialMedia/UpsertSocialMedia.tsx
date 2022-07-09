@@ -73,9 +73,7 @@ const UpsertSocialMedia = () => {
   useEffect(() => {
     const getMember = async () => {
       try {
-        const response = await getSocialMediaRequest({
-          id: socialMediaId,
-        });
+        const response = await getSocialMediaRequest(socialMediaId);
         const data: SocialMediaType = response.data;
 
         setSocialMedia(data);

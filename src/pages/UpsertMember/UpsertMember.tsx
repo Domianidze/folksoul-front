@@ -94,9 +94,7 @@ const UpsertMember = () => {
   useEffect(() => {
     const getMember = async () => {
       try {
-        const response = await getMemberRequest({
-          id: memberId,
-        });
+        const response = await getMemberRequest(memberId);
         const data: MemberType = response.data;
 
         setMember(data);

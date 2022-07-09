@@ -13,13 +13,13 @@ export const loginRequest = (
 export const getMembersRequest = (): Promise<
   AxiosResponse<MemberType[], any>
 > => {
-  return axios.get('/get-members');
+  return axios.get('/members');
 };
 
-export const getMemberRequest = (data: {
-  id: string | undefined;
-}): Promise<AxiosResponse<MemberType, any>> => {
-  return axios.post('/get-member', data);
+export const getMemberRequest = (
+  id: string | undefined
+): Promise<AxiosResponse<MemberType, any>> => {
+  return axios.get(`/member/${id}`);
 };
 
 export const addMemberRequest = (
@@ -72,13 +72,13 @@ export const changeMemberAvatarRequest = (
 export const getSocialMediasRequest = (): Promise<
   AxiosResponse<SocialMediaType[], any>
 > => {
-  return axios.get('/get-social-medias');
+  return axios.get('/social-medias');
 };
 
-export const getSocialMediaRequest = (data: {
-  id: string | undefined;
-}): Promise<AxiosResponse<SocialMediaType, any>> => {
-  return axios.post('/get-social-media', data);
+export const getSocialMediaRequest = (
+  id: string | undefined
+): Promise<AxiosResponse<SocialMediaType, any>> => {
+  return axios.get(`social-media/${id}`);
 };
 
 export const addSocialMediaRequest = (
@@ -129,7 +129,7 @@ export const changeSocialMediaIconRequest = (
 };
 
 export const getBandDataRequest = (): Promise<AxiosResponse<BandType, any>> => {
-  return axios.get('/get-band-data');
+  return axios.get('/band-data');
 };
 
 export const setBandInformationRequest = (
